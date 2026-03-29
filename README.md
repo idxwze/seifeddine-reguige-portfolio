@@ -1,14 +1,14 @@
 # Seifeddine Reguige Portfolio
 
-Minimal one-page portfolio for Seifeddine Reguige, built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
+This is my personal portfolio site. I designed it as a compact one-page experience with a dark cinematic visual style, strong motion, and a clean structure that is easy to maintain over time.
 
-The current site is intentionally compact:
+The site is intentionally focused:
 
 - cinematic hero
 - curated project grid with modal details
 - combined education and experience section
 - compact tech stack
-- simple contact CTA
+- simple contact area
 
 ## Stack
 
@@ -27,23 +27,23 @@ app/                 routes, layout, metadata, global styles
 components/          layout, sections, and reusable UI primitives
 data/                editable portfolio content and TypeScript models
 lib/                 utility helpers and metadata helpers
-public/files/        resume download
+public/files/        public resume download
 public/images/       portfolio imagery
 ```
 
-## Content Updates
+## Where I Update Content
 
-Most portfolio content lives in `data/`:
+Most of the portfolio content lives in `data/`:
 
-- `data/site.ts` global identity, links, navigation, hero stats
-- `data/education.ts` education card content
-- `data/experience.ts` experience timeline content
-- `data/projects.ts` project cards and modal content
-- `data/skills.ts` grouped skill tags
+- `data/site.ts` for identity, links, navigation, and hero stats
+- `data/education.ts` for education details
+- `data/experience.ts` for experience entries
+- `data/projects.ts` for project cards and modal content
+- `data/skills.ts` for skill groups
 
-To swap assets:
+To swap assets later:
 
-- replace portrait or project images in `public/images/`
+- replace images in `public/images/`
 - replace the resume file in `public/files/Seifeddine-Reguige-Resume.pdf`
 
 ## Development
@@ -60,7 +60,7 @@ Run locally:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Then open [http://localhost:3000](http://localhost:3000).
 
 ## Production
 
@@ -73,18 +73,19 @@ npm run start
 
 ## Deployment
 
-This project is ready for Vercel deployment out of the box.
+This project is set up for Vercel out of the box.
 
-For Vercel:
+To deploy:
 
-1. Import the repository.
-2. Use the default Next.js settings.
-3. Deploy.
+1. Push the repository.
+2. Import it into Vercel.
+3. Use the default Next.js settings.
+4. Deploy.
 
 ## Notes
 
-- The portfolio is dark by default and includes a polished intro overlay.
+- The portfolio is dark by default and includes a cinematic intro overlay.
 - Project cards open in a modal to preserve the one-page flow.
-- Current images are placeholders and should be replaced with real project or portrait assets later.
+- Some images are still placeholders and can be replaced later.
 - The resume in `public/files/` is intentionally public and served as a downloadable asset.
-- If `package-lock.json` needs a full refresh after dependency changes, run `npm install` once locally.
+- If I change dependencies and need to refresh the lockfile, I can run `npm install` again locally.
