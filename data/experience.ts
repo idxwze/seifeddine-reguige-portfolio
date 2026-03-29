@@ -2,27 +2,26 @@ import type { ExperienceItem } from "@/data/types";
 
 export const experienceItems: ExperienceItem[] = [
   {
-    role: "IT Support",
-    organization: "Adapted Exams Centre, University of Ottawa",
-    dates: "2025 - 2026",
-    summary: "Maintained reliability and security of large-scale exam environments.",
+    role: "IT Systems Developer",
+    organization: "Faculty of Health Sciences, University of Ottawa",
+    dates: "Oct 2024 – Apr 2025",
+    summary: "Developed and maintained web-based systems and data-driven interfaces for university faculty platforms.",
     bullets: [
-      "Supported large fleets of Linux and Windows exam workstations in high-pressure environments.",
-      "Diagnosed and resolved OS, network, and authentication issues using logs and system tooling.",
-      "Performed hardening and pre-exam validation to reduce incidents during secure assessments.",
-      "Authored runbooks and troubleshooting playbooks for repeatable incident response."
+      "Developed and maintained web-based systems using Java, PHP, JavaScript, HTML, and CSS for faculty platforms serving 10,000+ monthly users.",
+      "Worked with backend logic, API integrations, and structured data processing to support research and operational workflows.",
+      "Built and refined responsive interfaces for presenting healthcare and research information.",
+      "Optimized front-end performance through JavaScript refactoring and debugging."
     ]
   },
   {
-    role: "IT Systems Developer",
-    organization: "Faculty of Health Sciences, University of Ottawa",
-    dates: "2024 - 2025",
-    summary: "Developed and secured content and data workflows for high-traffic web systems.",
+    role: "IT Support Specialist",
+    organization: "Adapted Exam Centre, University of Ottawa",
+    dates: "Sept 2025 – Present",
+    summary: "Supporting secure digital exam environments and assistive technology software in a high-availability setting.",
     bullets: [
-      "Maintained and optimized Drupal- and WordPress-based systems with a focus on backend performance and security.",
-      "Improved role-based access and configuration to reduce operational and security risks.",
-      "Refactored data-driven pages to improve responsiveness, accessibility, and structure.",
-      "Collaborated with stakeholders to align content workflows with analytics and infrastructure needs."
+      "Troubleshoot hardware, software, and system configuration issues involving video tools, accessibility platforms, and workstation performance.",
+      "Developed automation scripts and diagnostic workflows to streamline health checks and reduce manual troubleshooting.",
+      "Created and maintained technical documentation, issue-resolution procedures, and support guides for shared systems and exam infrastructure."
     ]
   }
 ];

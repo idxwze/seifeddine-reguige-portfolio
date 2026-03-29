@@ -1,74 +1,130 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projectItems } from "@/data/projects";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 export function ProjectsSection() {
+  const [activeProject, setActiveProject] = React.useState(projectItems[0]?.slug ?? "");
+
   return (
-    <div className="space-y-10">
-      <div className="max-w-3xl space-y-4">
-        <p className="section-kicker">Projects</p>
-        <h2 className="section-title">Case studies that make backend, data, and ML work feel concrete.</h2>
-        <p className="text-base leading-8 text-muted-foreground sm:text-lg">
-          A curated set of projects spanning computer vision reliability, sports analytics, recommenders, database-backed systems, and exploratory security plus ML work.
+    <div className="space-y-12">
+      <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+        <div className="space-y-3">
+          <p className="section-kicker">Work</p>
+          <h2 className="section-title max-w-[10ch]">Curated Systems</h2>
+        </div>
+        <p className="max-w-md justify-self-end text-right text-sm leading-7 text-muted-foreground">
+          Selected work across computer vision research, recommender systems, and mobile application development.
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
         {projectItems.map((project, index) => (
-          <motion.div
-            key={project.slug}
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.42, delay: index * 0.06 }}
-            whileHover={{ y: -8, rotateX: 1.4, rotateY: -1.4 }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            <Card className="group flex h-full flex-col overflow-hidden">
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image src={project.image} alt={project.imageAlt} fill className="object-cover transition duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                  {project.status ? <Badge>{project.status}</Badge> : null}
+          <Dialog key={project.slug}>
+            <DialogTrigger asChild>
+              <motion.button
+                type="button"
+                onClick={() => setActiveProject(project.slug)}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -10, scale: 1.012 }}
+                className={`group surface relative overflow-hidden rounded-[1.9rem] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  index % 2 === 1 ? "lg:translate-y-10" : ""
+                } ${
+                  projectItems.length % 2 === 1 && index === projectItems.length - 1 ? "lg:col-span-2 lg:mx-auto lg:w-full lg:max-w-[calc(50%-0.75rem)] lg:translate-y-0" : ""
+                }`}
+              >
+                <div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition duration-500 group-hover:opacity-100">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(95,226,255,0.12),transparent_0_36%)]" />
                 </div>
-              </div>
+                <div className="relative aspect-[1.12] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    className="object-cover grayscale transition duration-700 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1 group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.1),rgba(2,10,14,0.82))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="translate-y-1 text-[0.56rem] font-bold uppercase tracking-[0.32em] text-primary opacity-85 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                          {project.tech.slice(0, 3).join(" / ")}
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-muted-foreground transition duration-500 group-hover:border-primary/20 group-hover:bg-primary/10 group-hover:text-primary">
+                          <ArrowUpRight className="size-4" />
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="max-w-[16ch] text-2xl font-black leading-[0.95] tracking-[-0.05em] text-foreground sm:text-[2rem]">
+                          {project.shortTitle}
+                        </h3>
+                        <p className="max-w-[46ch] text-sm leading-6 text-muted-foreground">{project.summary}</p>
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {project.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-white/70 opacity-0 transition duration-500 group-hover:opacity-100"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.button>
+            </DialogTrigger>
 
-              <CardHeader className="space-y-4">
-                <div className="space-y-2">
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription className="text-sm leading-7">{project.summary}</CardDescription>
-                </div>
-              </CardHeader>
+            <DialogContent className="max-w-3xl overflow-hidden rounded-[2rem] border-white/10 bg-[#041017] p-0">
+              {activeProject === project.slug ? (
+                <div className="grid gap-0 md:grid-cols-[0.96fr_1.04fr]">
+                  <div className="relative min-h-[16rem] md:min-h-full">
+                    <Image src={project.image} alt={project.imageAlt} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.12),rgba(2,10,14,0.72))]" />
+                  </div>
+                  <div className="p-7 sm:p-8">
+                    <DialogHeader className="space-y-4">
+                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.32em] text-primary">{project.heroEyebrow}</p>
+                      <DialogTitle className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
+                        {project.title}
+                      </DialogTitle>
+                      <DialogDescription className="text-sm leading-7 text-muted-foreground">{project.summary}</DialogDescription>
+                    </DialogHeader>
 
-              <CardContent className="mt-auto space-y-5">
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.slice(0, 4).map((item) => (
-                    <Badge key={item} variant="outline">
-                      {item}
-                    </Badge>
-                  ))}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="outline" className="border-white/10 bg-white/[0.03] text-foreground">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="mt-7 space-y-5">
+                      {project.sections.slice(0, 2).map((section) => (
+                        <div key={section.title} className="space-y-2">
+                          <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">{section.title}</h4>
+                          {section.paragraphs.map((paragraph) => (
+                            <p key={paragraph} className="text-sm leading-7 text-muted-foreground">
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition group-hover:text-primary"
-                >
-                  View case study
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </CardContent>
-            </Card>
-          </motion.div>
+              ) : null}
+            </DialogContent>
+          </Dialog>
         ))}
       </div>
     </div>

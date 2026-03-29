@@ -3,10 +3,6 @@ export interface NavItem {
   href: string;
 }
 
-export interface HighlightItem {
-  label: string;
-}
-
 export interface StatItem {
   value: string;
   label: string;
@@ -37,7 +33,6 @@ export interface ProjectItem {
   imageAlt: string;
   status?: "In Progress" | "Planned / exploratory";
   heroEyebrow: string;
-  overview: string;
   sections: ProjectSection[];
 }
 

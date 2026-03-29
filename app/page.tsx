@@ -1,6 +1,5 @@
 import { HeroSection } from "@/components/sections/hero";
-import { AboutSection } from "@/components/sections/about";
-import { ExperienceSection } from "@/components/sections/experience";
+import { FoundationSection } from "@/components/sections/foundation";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
 import { ContactSection } from "@/components/sections/contact";
@@ -10,15 +9,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <div className="container">
-        <Section id="about">
-          <AboutSection />
-        </Section>
-        <Section id="experience">
-          <ExperienceSection />
-        </Section>
+      <div className="container-shell">
         <Section id="projects">
           <ProjectsSection />
+        </Section>
+        <Section id="foundation">
+          <FoundationSection />
         </Section>
         <Section id="skills">
           <SkillsSection />

@@ -3,26 +3,26 @@ import type { SkillGroup } from "@/data/types";
 export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
-    items: ["Python", "Java", "C", "Go", "SQL", "JavaScript"]
+    items: ["Python", "Java", "JavaScript", "PHP", "SQL", "Bash"]
   },
   {
-    title: "Backend",
-    items: ["REST APIs", "CRUD", "Auth basics", "Database design", "Transactions", "Indexing", "Caching basics"]
+    title: "Backend & Data",
+    items: ["REST APIs", "Supabase", "SQLite", "Data Processing", "ETL Pipelines", "JSON/XML Parsing", "Matrix Factorization"]
   },
   {
-    title: "Data/ML",
-    items: ["EDA", "Feature engineering", "NumPy", "Pandas", "scikit-learn", "Evaluation metrics", "Recommender systems"]
+    title: "Machine Learning",
+    items: ["scikit-learn", "PyTorch", "TensorFlow", "Regression", "Clustering", "Recommender Systems", "Model Evaluation"]
   },
   {
-    title: "Systems & Networks",
-    items: ["Linux", "Bash", "OS fundamentals", "TCP/IP", "DNS", "Basic routing", "Wireshark"]
+    title: "Computer Vision",
+    items: ["OpenCV", "Optical Flow", "RAFT", "Endpoint Error (EPE)", "Feature Engineering"]
   },
   {
-    title: "Security",
-    items: ["Secure coding", "Secure systems design concepts", "OS hardening basics", "IDS/IPS concepts"]
+    title: "Frontend & Mobile",
+    items: ["HTML5", "CSS3", "React", "Android (Java)", "XML", "Responsive Design"]
   },
   {
     title: "Tools",
-    items: ["Git/GitHub", "Docker (basic)", "Jupyter", "Analytics tools", "Common IDEs"]
+    items: ["Git", "GitHub", "Streamlit", "Docker", "Android Studio", "VS Code", "Jupyter", "Chrome DevTools"]
   }
 ];

@@ -3,12 +3,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { navigationItems, siteConfig } from "@/data/site";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
+import { navigationItems } from "@/data/site";
 
 export function Navbar() {
-  const [activeSection, setActiveSection] = React.useState("about");
+  const [activeSection, setActiveSection] = React.useState("hero");
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     const sections = navigationItems
@@ -35,24 +34,57 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  React.useEffect(() => {
+    function closeMenu() {
+      setOpen(false);
+    }
+
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("hashchange", closeMenu);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("hashchange", closeMenu);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl">
-      <div className="container flex flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="group">
-            <p className="font-display text-lg font-semibold tracking-tight text-foreground">{siteConfig.name}</p>
-            <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Backend & Data/ML</p>
+    <header className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex justify-center px-4 py-6 md:px-6 md:py-8">
+      <div className="pointer-events-auto w-full max-w-fit rounded-full border border-white/10 bg-white/[0.03] shadow-[0_22px_80px_-44px_rgba(0,0,0,0.9)] backdrop-blur-2xl">
+        <div className="flex h-12 items-center gap-3 px-4 md:px-6">
+          <Link href="#hero" className="shrink-0 text-lg font-black tracking-[-0.08em] text-white">
+            SR<span className="text-primary">.</span>
           </Link>
 
-          <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
-          </div>
-        </div>
+          <button
+            type="button"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white md:hidden"
+            aria-expanded={open}
+            aria-label="Toggle navigation"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="sr-only">Toggle navigation</span>
+            <motion.div animate={open ? "open" : "closed"} className="flex flex-col gap-1">
+              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 3 } }} className="h-px w-4 bg-current" />
+              <motion.span variants={{ closed: { rotate: 0, y: 0, opacity: 1 }, open: { rotate: -45, y: -3, opacity: 1 } }} className="h-px w-4 bg-current" />
+            </motion.div>
+          </button>
 
-        <div className="flex items-center gap-2 overflow-x-auto md:gap-3">
           <nav
             aria-label="Primary navigation"
-            className="flex min-w-max items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1.5 backdrop-blur"
+            className={`${open ? "flex" : "hidden"} absolute left-4 right-4 top-[calc(100%+0.75rem)] flex-col gap-2 rounded-[1.25rem] border border-white/10 bg-background/95 p-3 shadow-[0_30px_70px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl md:static md:flex md:flex-row md:items-center md:gap-8 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
           >
             {navigationItems.map((item) => {
               const isActive = activeSection === item.href.slice(1);
@@ -60,29 +92,22 @@ export function Navbar() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
+                  className="relative rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground transition hover:text-white"
                 >
                   {isActive ? (
                     <motion.span
-                      layoutId="active-nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-white/10"
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-primary/10"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   ) : null}
-                  {item.label}
+                  <span className={isActive ? "text-primary" : undefined}>{item.label}</span>
                 </a>
               );
             })}
           </nav>
-
-          <div className="hidden items-center gap-2 md:flex">
-            <ThemeToggle />
-            <Button asChild size="sm" variant="outline">
-              <a href={siteConfig.resumeHref} target="_blank" rel="noreferrer">
-                Resume
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
     </header>

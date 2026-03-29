@@ -1,83 +1,90 @@
 # Seifeddine Reguige Portfolio
 
-Production-ready personal portfolio for a Backend & Data/ML Engineer, built with Next.js 14 App Router, React, TypeScript, Tailwind CSS, Framer Motion, and `next-themes`.
+Minimal one-page portfolio for Seifeddine Reguige, built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
+
+The current site is intentionally compact:
+
+- cinematic hero
+- curated project grid with modal details
+- combined education and experience section
+- compact tech stack
+- simple contact CTA
 
 ## Stack
 
-- Next.js 14
-- React + TypeScript
+- Next.js 14 App Router
+- React 18
+- TypeScript
 - Tailwind CSS
 - Framer Motion
-- `next-themes`
-- Vercel-ready App Router structure
+- Radix UI primitives for dialog behavior
+- `next-themes` for dark-mode support
 
-## Project structure
+## Project Structure
 
-- `app/` routes, layout, pages, API routes, SEO files
-- `components/` reusable UI and section components
-- `data/` all editable portfolio content and project definitions
-- `public/images/` placeholder local images
-- `public/files/` placeholder resume file
+```text
+app/                 routes, layout, metadata, global styles
+components/          layout, sections, and reusable UI primitives
+data/                editable portfolio content and TypeScript models
+lib/                 utility helpers and metadata helpers
+public/files/        resume download
+public/images/       portfolio imagery
+```
 
-## Getting started
+## Content Updates
+
+Most portfolio content lives in `data/`:
+
+- `data/site.ts` global identity, links, navigation, hero stats
+- `data/education.ts` education card content
+- `data/experience.ts` experience timeline content
+- `data/projects.ts` project cards and modal content
+- `data/skills.ts` grouped skill tags
+
+To swap assets:
+
+- replace portrait or project images in `public/images/`
+- replace the resume file in `public/files/Seifeddine-Reguige-Resume.pdf`
+
+## Development
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run locally:
+
+```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Available scripts
+## Production
+
+Create a production build:
 
 ```bash
-npm run dev
 npm run build
 npm run start
-npm run lint
-npm run typecheck
 ```
 
-## What to edit later
+## Deployment
 
-All content-like data is centralized so you can update the portfolio without editing layout logic:
+This project is ready for Vercel deployment out of the box.
 
-- Site identity, SEO text, nav, hero copy, links: `data/site.ts`
-- Experience cards: `data/experience.ts`
-- Project cards and detail-page content: `data/projects.ts`
-- Skills groups: `data/skills.ts`
+For Vercel:
 
-## Images and resume placeholders
+1. Import the repository.
+2. Use the default Next.js settings.
+3. Deploy.
 
-Current placeholders are local assets and meant to be replaced later:
+## Notes
 
-- `public/images/me.jpg`
-- `public/images/optical-flow-car.jpg`
-- `public/images/football-premier-league.jpg`
-- `public/images/backend-hotels.jpg`
-- `public/images/movie-recommendation.jpg`
-- `public/images/cyber-anomaly.jpg`
-- `public/files/Seifeddine-Reguige-Resume.pdf`
-
-You can swap these files directly without changing component code, as long as the filenames stay the same.
-
-## Contact form
-
-The contact form currently submits to `app/api/contact/route.ts`, which validates the payload, logs it server-side, and returns a dummy success response. Replace it later with a real provider such as Resend, Formspree, or a custom backend.
-
-## SEO
-
-The app includes:
-
-- route metadata
-- Open Graph metadata
-- dynamic OG image routes
-- `app/sitemap.ts`
-- `app/robots.ts`
-- JSON-LD for the person and project pages
-
-## Deploying to Vercel
-
-1. Push the repository to GitHub.
-2. Import the repo into Vercel.
-3. Deploy with the default Next.js settings.
+- The portfolio is dark by default and includes a polished intro overlay.
+- Project cards open in a modal to preserve the one-page flow.
+- Current images are placeholders and should be replaced with real project or portrait assets later.
+- The resume in `public/files/` is intentionally public and served as a downloadable asset.
+- If `package-lock.json` needs a full refresh after dependency changes, run `npm install` once locally.

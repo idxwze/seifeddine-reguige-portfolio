@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Public_Sans } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { IntroOverlay } from "@/components/intro-overlay";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { createMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/data/site";
 import "@/app/globals.css";
 
-const fontSans = Manrope({
+const fontSans = Public_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700", "900"],
   variable: "--font-sans"
 });
 
 const fontDisplay = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "700"],
   variable: "--font-display"
 });
 
@@ -41,7 +43,7 @@ export default function RootLayout({
       addressRegion: "ON",
       addressCountry: "Canada"
     },
-    sameAs: [siteConfig.linkedin, siteConfig.github],
+    sameAs: [siteConfig.linkedin],
     alumniOf: "University of Ottawa",
     url: siteConfig.url
   };
@@ -53,6 +55,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <ThemeProvider>
+          <IntroOverlay />
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
             <main id="main-content" className="flex-1">
