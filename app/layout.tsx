@@ -1,7 +1,7 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Public_Sans } from "next/font/google";
-import { Space_Grotesk } from "next/font/google";
+import { Public_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { Navbar } from "@/components/layout/navbar";
@@ -13,22 +13,22 @@ import "@/app/globals.css";
 const fontSans = Public_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700", "900"],
-  variable: "--font-sans"
+  variable: "--font-sans",
 });
 
 const fontDisplay = Space_Grotesk({
   subsets: ["latin"],
   weight: ["500", "700"],
-  variable: "--font-display"
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = createMetadata({
-  description: siteConfig.seoDescription
+  description: siteConfig.seoDescription,
 });
 
 export default function RootLayout({
-  children
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: ReactNode;
 }>) {
   const personJsonLd = {
@@ -41,34 +41,40 @@ export default function RootLayout({
       "@type": "PostalAddress",
       addressLocality: "Ottawa",
       addressRegion: "ON",
-      addressCountry: "Canada"
+      addressCountry: "Canada",
     },
     sameAs: [siteConfig.linkedin],
     alumniOf: "University of Ottawa",
-    url: siteConfig.url
+    url: siteConfig.url,
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${fontSans.variable} ${fontDisplay.variable} min-h-screen`}>
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <ThemeProvider>
-          <IntroOverlay />
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
-        <script
+      <html lang="en" suppressHydrationWarning>
+      <body
+          className={`${fontSans.variable} ${fontDisplay.variable} min-h-screen`}
+      >
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+
+      <ThemeProvider>
+        <IntroOverlay />
+        <div className="relative flex min-h-screen flex-col">
+          <Navbar />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </ThemeProvider>
+
+      <Analytics />
+
+      <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+      />
       </body>
-    </html>
+      </html>
   );
 }
