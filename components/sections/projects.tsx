@@ -84,113 +84,127 @@ export function ProjectsSection() {
               </motion.button>
             </DialogTrigger>
 
-            <DialogContent className="max-w-3xl overflow-hidden rounded-[2rem] border-white/10 bg-[#041017] p-0">
+            <DialogContent className="h-[min(90vh,920px)] w-[min(1120px,calc(100vw-1.5rem))] max-w-[1120px] overflow-hidden rounded-[2rem] border-white/10 bg-[#041017] p-0">
               {activeProject === project.slug ? (
-                <div className="grid gap-0 md:grid-cols-[0.96fr_1.04fr]">
-                  <div className="relative min-h-[16rem] md:min-h-full">
-                    <Image src={project.image} alt={project.imageAlt} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.12),rgba(2,10,14,0.72))]" />
-                  </div>
-                  <div className="p-7 sm:p-8">
-                    <DialogHeader className="space-y-4">
-                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.32em] text-primary">{project.heroEyebrow}</p>
-                      <DialogTitle className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.05em] text-foreground">
-                        {project.title}
-                      </DialogTitle>
-                      <DialogDescription className="text-sm leading-7 text-muted-foreground">{project.summary}</DialogDescription>
-                    </DialogHeader>
-
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="border-white/10 bg-white/[0.03] text-foreground">
-                          {tag}
-                        </Badge>
-                      ))}
+                <div className="flex h-full min-h-0 flex-col">
+                  <div className="grid min-h-0 flex-1 gap-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+                    <div className="relative min-h-[18rem] lg:min-h-full">
+                      <Image src={project.image} alt={project.imageAlt} fill className="object-cover" />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.1),rgba(2,10,14,0.3)_38%,rgba(2,10,14,0.78))]" />
                     </div>
 
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.tech.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-white/70"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                    <div className="min-h-0 overflow-y-auto">
+                      <div className="p-7 sm:p-8 lg:p-10">
+                        <DialogHeader className="space-y-4">
+                          <p className="text-[0.62rem] font-bold uppercase tracking-[0.32em] text-primary">{project.heroEyebrow}</p>
+                          <DialogTitle className="max-w-[22ch] text-3xl font-black uppercase leading-[0.95] tracking-[-0.05em] text-foreground lg:text-[2.45rem]">
+                            {project.title}
+                          </DialogTitle>
+                          <DialogDescription className="max-w-[62ch] text-sm leading-7 text-muted-foreground lg:text-[0.96rem]">
+                            {project.summary}
+                          </DialogDescription>
+                        </DialogHeader>
 
-                    {project.links?.length ? (
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {project.links.map((link) => (
-                          <a
-                            key={link.href}
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                          >
-                            {link.label}
-                            <ArrowUpRight className="size-3.5" />
-                          </a>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    {project.highlights?.length ? (
-                      <div className="mt-7 space-y-3">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Highlights</h4>
-                        <ul className="space-y-3">
-                          {project.highlights.map((highlight) => (
-                            <li key={highlight} className="flex gap-3 text-sm leading-7 text-muted-foreground">
-                              <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary" />
-                              <span>{highlight}</span>
-                            </li>
+                        <div className="mt-6 flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="border-white/10 bg-white/[0.03] text-foreground">
+                              {tag}
+                            </Badge>
                           ))}
-                        </ul>
-                      </div>
-                    ) : null}
+                        </div>
 
-                    <div className="mt-7 space-y-5">
-                      {project.sections.map((section) => (
-                        <div key={section.title} className="space-y-2">
-                          <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">{section.title}</h4>
-                          {section.paragraphs.map((paragraph) => (
-                            <p key={paragraph} className="text-sm leading-7 text-muted-foreground">
-                              {paragraph}
-                            </p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {project.tech.map((item) => (
+                            <span
+                              key={item}
+                              className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-white/70"
+                            >
+                              {item}
+                            </span>
                           ))}
-                          {section.bullets?.length ? (
-                            <ul className="space-y-3 pt-1">
-                              {section.bullets.map((bullet) => (
-                                <li key={bullet} className="flex gap-3 text-sm leading-7 text-muted-foreground">
-                                  <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary/80" />
-                                  <span>{bullet}</span>
+                        </div>
+
+                        {project.links?.length ? (
+                          <div className="mt-6 flex flex-wrap gap-2">
+                            {project.links.map((link) => (
+                              <a
+                                key={link.href}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              >
+                                {link.label}
+                                <ArrowUpRight className="size-3.5" />
+                              </a>
+                            ))}
+                          </div>
+                        ) : null}
+
+                        {project.highlights?.length ? (
+                          <div className="mt-8 rounded-[1.4rem] border border-white/10 bg-white/[0.025] p-5 sm:p-6">
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Highlights</h4>
+                            <ul className="mt-4 space-y-3.5">
+                              {project.highlights.map((highlight) => (
+                                <li key={highlight} className="flex gap-3 text-sm leading-7 text-muted-foreground">
+                                  <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary" />
+                                  <span>{highlight}</span>
                                 </li>
                               ))}
                             </ul>
-                          ) : null}
-                        </div>
-                      ))}
-                    </div>
+                          </div>
+                        ) : null}
 
-                    {project.supportingMedia?.length ? (
-                      <div className="mt-8 space-y-3">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Supporting media</h4>
-                        <div className="grid gap-3 sm:grid-cols-3">
-                          {project.supportingMedia.map((media) => (
-                            <div key={media.src} className="space-y-2">
-                              <div className="relative aspect-[1.08] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-                                <Image src={media.src} alt={media.alt} fill className="object-cover" />
+                        <div className="mt-8 space-y-7">
+                          {project.sections.map((section) => (
+                            <div key={section.title} className="space-y-3">
+                              <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">{section.title}</h4>
+                              <div className="space-y-3">
+                                {section.paragraphs.map((paragraph) => (
+                                  <p key={paragraph} className="max-w-[66ch] text-sm leading-7 text-muted-foreground lg:text-[0.96rem]">
+                                    {paragraph}
+                                  </p>
+                                ))}
                               </div>
-                              <p className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                                {media.label}
-                              </p>
+                              {section.bullets?.length ? (
+                                <ul className="space-y-3.5 pt-1">
+                                  {section.bullets.map((bullet) => (
+                                    <li key={bullet} className="flex gap-3 text-sm leading-7 text-muted-foreground lg:text-[0.96rem]">
+                                      <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary/80" />
+                                      <span className="max-w-[64ch]">{bullet}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
                             </div>
                           ))}
                         </div>
                       </div>
-                    ) : null}
+                    </div>
                   </div>
+
+                  {project.supportingMedia?.length ? (
+                    <div className="border-t border-white/10 bg-white/[0.02] px-7 py-6 sm:px-8 lg:px-10">
+                      <div className="flex items-center justify-between gap-4">
+                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Supporting media</h4>
+                        <p className="hidden text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
+                          Visual outputs from the saved analysis pipeline
+                        </p>
+                      </div>
+                      <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                        {project.supportingMedia.map((media) => (
+                          <figure key={media.src} className="space-y-2.5">
+                            <div className="relative aspect-[1.35] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                              <Image src={media.src} alt={media.alt} fill className="object-cover" />
+                            </div>
+                            <figcaption className="max-w-[24ch] text-[0.68rem] font-medium uppercase leading-5 tracking-[0.18em] text-muted-foreground">
+                              {media.label}
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
             </DialogContent>
