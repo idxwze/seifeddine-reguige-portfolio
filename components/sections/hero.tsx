@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { heroStats, siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
 
@@ -39,7 +39,7 @@ export function HeroSection() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
           <motion.div variants={container} initial="hidden" animate="show" className="space-y-8 lg:space-y-10">
             <motion.div variants={item} className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-[0.62rem] font-bold uppercase tracking-[0.34em] text-primary cyan-glow">
-              Expected graduation: Summer 2026
+              Open to 2026 software, backend, data & ML roles
             </motion.div>
 
             <div className="space-y-4 lg:space-y-5">
@@ -53,7 +53,7 @@ export function HeroSection() {
               </motion.p>
 
               <motion.p variants={item} className="max-w-xl text-balance text-lg font-semibold leading-7 text-foreground sm:text-xl">
-                Computer Science student at uOttawa focused on backend systems, data analysis, machine learning, and practical software delivery.
+                Computer Science student at uOttawa building backend systems, data workflows, and ML-assisted software with careful engineering habits.
               </motion.p>
 
               <motion.p variants={item} className="max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
@@ -72,28 +72,28 @@ export function HeroSection() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 rounded-2xl border-white/10 bg-white/[0.02] px-6 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-foreground hover:bg-white/[0.05]"
+                className="h-12 rounded-2xl border-border/70 bg-card/55 px-6 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-foreground hover:bg-card/80"
               >
-                <a href="#contact">
-                  <Mail className="size-4" />
-                  Get In Touch
+                <a href="#projects">
+                  View Projects
+                  <ArrowRight className="size-4" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="icon"
                 variant="ghost"
-                className="hidden h-12 w-12 rounded-2xl border border-white/10 bg-white/[0.02] text-foreground hover:bg-white/[0.05] sm:inline-flex"
+                className="hidden h-12 w-12 rounded-2xl border border-border/70 bg-card/55 text-foreground hover:bg-card/80 sm:inline-flex"
               >
-                <a href={siteConfig.resumeHref} target="_blank" rel="noopener noreferrer" aria-label="Download resume">
-                  <Download className="size-4" />
+                <a href="#contact" aria-label="Jump to contact section">
+                  <Mail className="size-4" />
                 </a>
               </Button>
             </motion.div>
 
             <motion.div variants={item} className="flex flex-wrap gap-3 pt-1">
               {heroStats.map((stat) => (
-                <div key={stat.label} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                <div key={stat.label} className="rounded-full border border-border/70 bg-card/55 px-4 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   <span className="mr-2 font-bold text-foreground">{stat.value}</span>
                   {stat.label}
                 </div>
@@ -110,11 +110,11 @@ export function HeroSection() {
             <motion.div
               animate={reducedMotion ? undefined : { y: [0, -8, 0] }}
               transition={reducedMotion ? undefined : { duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
-              className="surface relative overflow-hidden rounded-[2rem] p-4 sm:p-5"
+              className="surface group/avatar relative overflow-hidden rounded-[2rem] p-4 sm:p-5"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(67,224,255,0.2),transparent_0_34%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
               <div className="relative space-y-4">
-                <div className="flex items-center justify-between rounded-[1.2rem] border border-white/[0.08] bg-black/20 px-4 py-3 backdrop-blur-sm">
+                <div className="flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/45 px-4 py-3 backdrop-blur-sm">
                   <div>
                     <p className="text-[0.58rem] font-bold uppercase tracking-[0.34em] text-primary">Core Toolkit</p>
                     <p className="mt-1 text-sm text-foreground">Java, Python, JavaScript, PHP, SQL</p>
@@ -122,7 +122,7 @@ export function HeroSection() {
                   <div className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_16px_rgba(74,222,255,0.9)]" />
                 </div>
 
-                <div className="relative overflow-hidden rounded-[1.6rem] border border-white/[0.08] bg-[#040b10]">
+                <div className="relative overflow-hidden rounded-[1.6rem] border border-border/60 bg-[#040b10]">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/55" />
                   <Image
                     src="/images/me.jpg"
@@ -130,16 +130,16 @@ export function HeroSection() {
                     width={900}
                     height={1200}
                     priority
-                    className="aspect-[0.86] w-full object-cover grayscale"
+                    className="aspect-[0.86] w-full object-cover grayscale transition duration-700 ease-out group-hover/avatar:scale-[1.015] group-hover/avatar:grayscale-0"
                   />
                   <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
                     <div className="rounded-2xl border border-white/10 bg-black/35 px-3 py-2 backdrop-blur-sm">
                       <p className="text-[0.56rem] font-bold uppercase tracking-[0.28em] text-primary">Focused on</p>
-                      <p className="mt-1 text-xs text-foreground">Backend, data analysis, ML, computer vision</p>
+                      <p className="mt-1 text-xs text-white">Backend, data analysis, ML, computer vision</p>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-black/35 px-3 py-2 text-right backdrop-blur-sm">
                       <p className="text-[0.56rem] font-bold uppercase tracking-[0.28em] text-primary">Education</p>
-                      <p className="mt-1 text-xs text-foreground">uOttawa CS (Co-op)</p>
+                      <p className="mt-1 text-xs text-white">uOttawa CS (Co-op)</p>
                     </div>
                   </div>
                 </div>

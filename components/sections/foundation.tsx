@@ -17,19 +17,19 @@ export function FoundationSection() {
       >
         <div className="space-y-3">
           <p className="section-kicker">Foundation</p>
-          <h2 className="section-title max-w-[9ch]">Education & Story</h2>
+          <h2 className="section-title max-w-[10ch]">Education & Experience</h2>
         </div>
-        <Card className="relative mt-8 overflow-hidden rounded-[2rem] border-white/5 bg-white/[0.025]">
+        <Card className="relative mt-8 overflow-hidden rounded-[2rem] border-border/70 bg-card/72">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(95,226,255,0.12),transparent_0_22%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]" />
           <div className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
-          <div className="absolute right-6 top-6 hidden h-24 w-24 overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-md sm:block">
+          <div className="absolute right-6 top-6 hidden h-24 w-24 overflow-hidden rounded-[1.4rem] border border-border/70 bg-background/45 p-4 backdrop-blur-md sm:block">
             <Image
               src="/images/uottawa-logo.png"
               alt=""
               aria-hidden="true"
               fill
               sizes="96px"
-              className="object-contain object-top p-4 opacity-20 brightness-0 invert"
+              className="object-contain object-top p-4 opacity-15 brightness-0 dark:opacity-20 dark:invert"
             />
           </div>
           <CardContent className="space-y-6 p-8 md:p-10">
@@ -43,7 +43,7 @@ export function FoundationSection() {
               <p>{education.standing}</p>
               <p>{education.cgpa}</p>
             </div>
-            <div className="border-t border-white/10 pt-6">
+            <div className="border-t border-border/70 pt-6">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-primary">Relevant Coursework</p>
               <p className="mt-3 text-sm leading-7 text-foreground/90">{education.coursework.join(" • ")}</p>
             </div>
@@ -60,33 +60,33 @@ export function FoundationSection() {
       >
         <div className="space-y-3">
           <p className="section-kicker text-muted-foreground">Timeline</p>
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 backdrop-blur-sm">
-            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/10 bg-black/20">
+          <div className="inline-flex items-center gap-3 rounded-full border border-border/70 bg-card/60 px-3 py-2 backdrop-blur-sm">
+            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border/70 bg-background/50">
               <Image
                 src="/images/uottawa-logo.png"
                 alt=""
                 aria-hidden="true"
                 fill
                 sizes="32px"
-                className="object-contain object-top p-1.5 opacity-60 brightness-0 invert"
+                className="object-contain object-top p-1.5 opacity-55 brightness-0 dark:invert"
               />
             </div>
             <span className="text-[0.58rem] font-bold uppercase tracking-[0.28em] text-primary">University of Ottawa Roles</span>
           </div>
           <p className="max-w-md text-sm leading-7 text-muted-foreground">
-            University IT experience across web systems, reliability, and support in secure technical environments.
+            University IT experience across web systems, backend-adjacent workflows, reliability, and secure technical support.
           </p>
         </div>
         {experienceItems.map((item) => (
-          <Card key={item.role} className="relative overflow-hidden rounded-[1.75rem] border-white/5 bg-white/[0.025] transition duration-300 hover:border-primary/30 hover:bg-white/[0.035]">
-            <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] p-2">
+          <Card key={item.role} className="relative overflow-hidden rounded-[1.75rem] border-border/70 bg-card/72 transition duration-300 hover:border-primary/30 hover:bg-card/90">
+            <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-2xl border border-border/60 bg-background/40 p-2">
               <Image
                 src="/images/uottawa-logo.png"
                 alt=""
                 fill
                 sizes="48px"
                 aria-hidden="true"
-                className="object-contain object-top p-2 opacity-[0.12] brightness-0 invert"
+                className="object-contain object-top p-2 opacity-[0.1] brightness-0 dark:invert dark:opacity-[0.12]"
               />
             </div>
             <CardContent className="space-y-5 p-7">

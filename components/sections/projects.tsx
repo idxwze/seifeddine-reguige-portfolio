@@ -16,10 +16,10 @@ export function ProjectsSection() {
       <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
         <div className="space-y-3">
           <p className="section-kicker">Work</p>
-          <h2 className="section-title max-w-[10ch]">Curated Systems</h2>
+          <h2 className="section-title max-w-[10ch]">Selected Work</h2>
         </div>
         <p className="max-w-md justify-self-end text-right text-sm leading-7 text-muted-foreground">
-          Selected work across computer vision research, recommender systems, and mobile application development.
+          Projects chosen for technical depth: ML/CV reliability, recommendation modeling, and role-based mobile/backend workflows.
         </p>
       </div>
 
@@ -58,15 +58,15 @@ export function ProjectsSection() {
                         <span className="translate-y-1 text-[0.56rem] font-bold uppercase tracking-[0.32em] text-primary opacity-85 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                           {project.tech.slice(0, 3).join(" / ")}
                         </span>
-                        <span className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-muted-foreground transition duration-500 group-hover:border-primary/20 group-hover:bg-primary/10 group-hover:text-primary">
+                        <span className="rounded-full border border-white/10 bg-white/[0.06] p-2 text-white/70 transition duration-500 group-hover:border-primary/20 group-hover:bg-primary/10 group-hover:text-primary">
                           <ArrowUpRight className="size-4" />
                         </span>
                       </div>
                       <div className="space-y-2">
-                        <h3 className="max-w-[16ch] text-2xl font-black leading-[0.95] tracking-[-0.05em] text-foreground sm:text-[2rem]">
+                        <h3 className="max-w-[16ch] text-2xl font-black leading-[0.95] tracking-[-0.05em] text-white sm:text-[2rem]">
                           {project.shortTitle}
                         </h3>
-                        <p className="max-w-[46ch] text-sm leading-6 text-muted-foreground">{project.summary}</p>
+                        <p className="max-w-[46ch] text-sm leading-6 text-white/72">{project.summary}</p>
                         <div className="flex flex-wrap gap-2 pt-1">
                           {project.tags.slice(0, 2).map((tag) => (
                             <span
@@ -84,7 +84,7 @@ export function ProjectsSection() {
               </motion.button>
             </DialogTrigger>
 
-            <DialogContent className="h-[min(90vh,920px)] w-[min(1120px,calc(100vw-1.5rem))] max-w-[1120px] overflow-hidden rounded-[2rem] border-white/10 bg-[#041017] p-0">
+            <DialogContent className="h-[min(90vh,920px)] w-[min(1120px,calc(100vw-1.5rem))] max-w-[1120px] overflow-hidden rounded-[2rem] border-border/70 bg-card p-0">
               {activeProject === project.slug ? (
                 <div className="flex h-full min-h-0 flex-col">
                   <div className="grid min-h-0 flex-1 gap-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
@@ -107,7 +107,7 @@ export function ProjectsSection() {
 
                         <div className="mt-6 flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="border-white/10 bg-white/[0.03] text-foreground">
+                            <Badge key={tag} variant="outline" className="border-border/70 bg-background/45 text-foreground">
                               {tag}
                             </Badge>
                           ))}
@@ -117,7 +117,7 @@ export function ProjectsSection() {
                           {project.tech.map((item) => (
                             <span
                               key={item}
-                              className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-white/70"
+                              className="rounded-full border border-border/70 bg-background/45 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-muted-foreground"
                             >
                               {item}
                             </span>
@@ -132,7 +132,7 @@ export function ProjectsSection() {
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/45 px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                               >
                                 {link.label}
                                 <ArrowUpRight className="size-3.5" />
@@ -142,7 +142,7 @@ export function ProjectsSection() {
                         ) : null}
 
                         {project.highlights?.length ? (
-                          <div className="mt-8 rounded-[1.4rem] border border-white/10 bg-white/[0.025] p-5 sm:p-6">
+                          <div className="mt-8 rounded-[1.4rem] border border-border/70 bg-background/45 p-5 sm:p-6">
                             <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Highlights</h4>
                             <ul className="mt-4 space-y-3.5">
                               {project.highlights.map((highlight) => (
@@ -184,7 +184,7 @@ export function ProjectsSection() {
                   </div>
 
                   {project.supportingMedia?.length ? (
-                    <div className="border-t border-white/10 bg-white/[0.02] px-7 py-6 sm:px-8 lg:px-10">
+                    <div className="border-t border-border/70 bg-muted/35 px-7 py-6 sm:px-8 lg:px-10">
                       <div className="flex items-center justify-between gap-4">
                         <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Supporting media</h4>
                         <p className="hidden text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
@@ -194,7 +194,7 @@ export function ProjectsSection() {
                       <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                         {project.supportingMedia.map((media) => (
                           <figure key={media.src} className="space-y-2.5">
-                            <div className="relative aspect-[1.35] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                            <div className="relative aspect-[1.35] overflow-hidden rounded-2xl border border-border/70 bg-background/50">
                               <Image src={media.src} alt={media.alt} fill className="object-cover" />
                             </div>
                             <figcaption className="max-w-[24ch] text-[0.68rem] font-medium uppercase leading-5 tracking-[0.18em] text-muted-foreground">

@@ -7,8 +7,8 @@ export function SkillsSection() {
   return (
     <div className="space-y-10">
       <div className="space-y-3 text-center">
-        <p className="section-kicker">Technical Arsenal</p>
-        <h2 className="section-title mx-auto max-w-[8ch]">Tech Stack</h2>
+        <p className="section-kicker">Technical Focus</p>
+        <h2 className="section-title mx-auto max-w-[8ch]">Core Stack</h2>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3 xl:grid-cols-6">
@@ -31,7 +31,7 @@ export function SkillsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: groupIndex * 0.05 + itemIndex * 0.03 }}
                   whileHover={{ y: -2 }}
-                  className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary/25 hover:text-primary"
+                  className="rounded-xl border border-border/70 bg-card/60 px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary/25 hover:bg-card hover:text-primary"
                 >
                   {item}
                 </motion.span>

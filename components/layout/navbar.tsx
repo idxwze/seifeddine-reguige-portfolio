@@ -3,11 +3,19 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { navigationItems } from "@/data/site";
 
 export function Navbar() {
   const [activeSection, setActiveSection] = React.useState("hero");
   const [open, setOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   React.useEffect(() => {
     const sections = navigationItems
@@ -62,15 +70,15 @@ export function Navbar() {
 
   return (
     <header className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex justify-center px-4 py-6 md:px-6 md:py-8">
-      <div className="pointer-events-auto w-full max-w-fit rounded-full border border-white/10 bg-white/[0.03] shadow-[0_22px_80px_-44px_rgba(0,0,0,0.9)] backdrop-blur-2xl">
+      <div className="pointer-events-auto w-full max-w-fit rounded-full border border-border/70 bg-card/75 shadow-[0_22px_80px_-44px_rgba(0,0,0,0.42)] backdrop-blur-2xl">
         <div className="flex h-12 items-center gap-3 px-4 md:px-6">
-          <Link href="#hero" className="shrink-0 text-lg font-black tracking-[-0.08em] text-white">
+          <Link href="#hero" className="shrink-0 text-lg font-black tracking-[-0.08em] text-foreground">
             SR<span className="text-primary">.</span>
           </Link>
 
           <button
             type="button"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-border/70 text-foreground transition hover:border-primary/30 hover:text-primary md:hidden"
             aria-expanded={open}
             aria-label="Toggle navigation"
             onClick={() => setOpen((value) => !value)}
@@ -84,7 +92,7 @@ export function Navbar() {
 
           <nav
             aria-label="Primary navigation"
-            className={`${open ? "flex" : "hidden"} absolute left-4 right-4 top-[calc(100%+0.75rem)] flex-col gap-2 rounded-[1.25rem] border border-white/10 bg-background/95 p-3 shadow-[0_30px_70px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl md:static md:flex md:flex-row md:items-center md:gap-8 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
+            className={`${open ? "flex" : "hidden"} absolute left-4 right-4 top-[calc(100%+0.75rem)] flex-col gap-2 rounded-[1.25rem] border border-border/70 bg-background/95 p-3 shadow-[0_30px_70px_-40px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:static md:flex md:flex-row md:items-center md:gap-8 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
           >
             {navigationItems.map((item) => {
               const isActive = activeSection === item.href.slice(1);
@@ -94,7 +102,7 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   aria-current={isActive ? "page" : undefined}
-                  className="relative rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground transition hover:text-white"
+                  className="relative rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground transition hover:text-foreground"
                 >
                   {isActive ? (
                     <motion.span
@@ -108,6 +116,22 @@ export function Navbar() {
               );
             })}
           </nav>
+
+          <button
+            type="button"
+            aria-label={`Switch to ${mounted && resolvedTheme === "dark" ? "light" : "dark"} mode`}
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="relative inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background/60 text-foreground transition hover:border-primary/30 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <motion.span
+              key={mounted ? resolvedTheme : "light"}
+              initial={{ y: 10, opacity: 0, rotate: -18 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {mounted && resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </motion.span>
+          </button>
         </div>
       </div>
     </header>

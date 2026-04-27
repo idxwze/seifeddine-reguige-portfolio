@@ -89,7 +89,7 @@ export const projectItems: ProjectItem[] = [
     slug: "movie-recommender-system",
     title: "Movie Recommender System",
     shortTitle: "Movie Recommender",
-    summary: "Recommendation pipeline combining content-based filtering, clustering, and collaborative filtering on user-item rating data.",
+    summary: "Recommendation pipeline using sparse rating data, similarity scoring, clustering, and collaborative filtering to generate personalized movie suggestions.",
     tags: ["Recommender Systems", "Machine Learning", "Data"],
     tech: ["Python", "NumPy", "scikit-learn", "Surprise"],
     image: "/images/movie-recommendation.jpg",
@@ -99,15 +99,15 @@ export const projectItems: ProjectItem[] = [
       {
         title: "Context",
         paragraphs: [
-          "Built as a movie recommendation system that combined collaborative signals with clustering and content-aware similarity scoring.",
-          "The project emphasized measurable ranking quality and efficient data representation."
+          "Built as a practical recommendation system for learning how user-item data can be transformed into personalized ranking signals.",
+          "The project emphasized clean preprocessing, efficient matrix representation, and evaluation instead of only returning visually plausible suggestions."
         ]
       },
       {
         title: "Build",
         paragraphs: [
-          "Developed a recommendation pipeline over user-item rating data and engineered a sparse CSR utility matrix for memory-efficient matrix factorization.",
-          "Implemented masked-entry validation by holding out 10 percent of known interactions to evaluate recommendation quality more realistically."
+          "Developed a recommendation pipeline over user-item rating data and engineered a sparse CSR utility matrix for memory-efficient modeling.",
+          "Compared content-aware similarity, clustering, and collaborative-filtering approaches, then used masked-entry validation by holding out known interactions."
         ],
         bullets: [
           "Content-based filtering, clustering, and collaborative filtering",
@@ -118,7 +118,7 @@ export const projectItems: ProjectItem[] = [
       {
         title: "Takeaway",
         paragraphs: [
-          "A practical recommender build grounded in evaluation, efficient matrix operations, and clearer user-preference modeling."
+          "A focused recommender build grounded in evaluation, efficient matrix operations, and clear user-preference modeling."
         ]
       }
     ]
