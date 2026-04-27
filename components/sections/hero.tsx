@@ -34,7 +34,7 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(55,220,255,0.16),transparent_0_18rem),radial-gradient(circle_at_88%_16%,rgba(38,117,255,0.12),transparent_0_20rem)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(55,220,255,0.2),transparent_0_19rem),radial-gradient(circle_at_76%_18%,rgba(38,117,255,0.13),transparent_0_21rem),radial-gradient(circle_at_52%_70%,rgba(55,220,255,0.08),transparent_0_26rem)] dark:bg-[radial-gradient(circle_at_12%_18%,rgba(55,220,255,0.16),transparent_0_18rem),radial-gradient(circle_at_88%_16%,rgba(38,117,255,0.12),transparent_0_20rem)]" />
       <div className="container-shell pb-20 lg:pb-28">
         <div className="grid items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
           <motion.div variants={container} initial="hidden" animate="show" className="space-y-8 lg:space-y-10">
@@ -45,7 +45,7 @@ export function HeroSection() {
             <div className="space-y-4 lg:space-y-5">
               <motion.h1 variants={item} className="text-5xl font-black uppercase leading-[0.88] tracking-[-0.085em] text-foreground sm:text-6xl lg:text-[6.2rem] xl:text-[7rem]">
                 SEIFEDDINE
-                <span className="outline-title block">REGUIGE</span>
+                <span className="outline-title block font-display">REGUIGE</span>
               </motion.h1>
 
               <motion.p variants={item} className="text-[0.7rem] font-bold uppercase tracking-[0.34em] text-primary sm:text-xs">

@@ -41,6 +41,11 @@ export function ProjectsSection() {
                   projectItems.length % 2 === 1 && index === projectItems.length - 1 ? "lg:col-span-2 lg:mx-auto lg:w-full lg:max-w-[calc(50%-0.75rem)] lg:translate-y-0" : ""
                 }`}
               >
+                {project.slug === "honours-research-optical-flow-reliability-prediction" ? (
+                  <div className="pointer-events-none absolute right-4 top-4 z-20 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[0.56rem] font-bold uppercase tracking-[0.22em] text-white/75 backdrop-blur">
+                    GIF
+                  </div>
+                ) : null}
                 <div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition duration-500 group-hover:opacity-100">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(95,226,255,0.12),transparent_0_36%)]" />
                 </div>
@@ -49,7 +54,11 @@ export function ProjectsSection() {
                     src={project.image}
                     alt={project.imageAlt}
                     fill
-                    className="object-cover grayscale transition duration-700 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1 group-hover:grayscale-0"
+                    className={`object-cover transition duration-700 ease-out group-hover:scale-[1.06] group-hover:-translate-y-1 ${
+                      project.slug === "honours-research-optical-flow-reliability-prediction"
+                        ? "saturate-[0.78] contrast-105 group-hover:saturate-100"
+                        : "grayscale group-hover:grayscale-0"
+                    }`}
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.1),rgba(2,10,14,0.82))]" />
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">

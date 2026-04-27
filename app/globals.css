@@ -20,19 +20,21 @@
   --input: 197 22% 82%;
   --ring: 190 82% 39%;
   --radius: 1.5rem;
-  --page-radial-one: rgba(0, 160, 190, 0.14);
-  --page-radial-two: rgba(59, 111, 160, 0.08);
+  --page-radial-one: rgba(0, 160, 190, 0.16);
+  --page-radial-two: rgba(59, 111, 160, 0.1);
+  --page-radial-three: rgba(34, 197, 255, 0.1);
   --page-start: #f8fbfc;
   --page-end: #edf4f6;
   --grid-line: rgba(9, 91, 112, 0.075);
   --ambient-overlay:
     linear-gradient(180deg, rgba(248, 251, 252, 0) 0%, rgba(248, 251, 252, 0.42) 45%, rgba(237, 244, 246, 0.82) 100%),
+    radial-gradient(circle at 76% 34%, rgba(34, 197, 255, 0.1), transparent 0 28rem),
     radial-gradient(circle at top, rgba(20, 164, 191, 0.11), transparent 38%);
   --surface-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.82) inset,
     0 30px 90px -62px rgba(9, 42, 54, 0.42);
-  --outline-stroke: rgba(10, 33, 43, 0.16);
-  --outline-glow: rgba(0, 132, 166, 0.08);
+  --outline-stroke: rgba(10, 33, 43, 0.28);
+  --outline-glow: rgba(0, 132, 166, 0.14);
 }
 
 .dark {
@@ -54,6 +56,7 @@
   --ring: 188 100% 60%;
   --page-radial-one: rgba(27, 198, 255, 0.1);
   --page-radial-two: rgba(52, 105, 255, 0.08);
+  --page-radial-three: rgba(65, 210, 255, 0.07);
   --page-start: #020c10;
   --page-end: #020a0e;
   --grid-line: rgba(79, 214, 255, 0.05);
@@ -82,6 +85,7 @@
     background:
       radial-gradient(circle at 18% 12%, var(--page-radial-one), transparent 0 22rem),
       radial-gradient(circle at 82% 18%, var(--page-radial-two), transparent 0 20rem),
+      radial-gradient(circle at 46% 46%, var(--page-radial-three), transparent 0 34rem),
       linear-gradient(180deg, var(--page-start), var(--page-end));
     background-color: hsl(var(--background));
     transition:
@@ -179,7 +183,9 @@
   .outline-title {
     color: transparent;
     -webkit-text-stroke: 1px var(--outline-stroke);
-    text-shadow: 0 0 1px var(--outline-glow);
+    text-shadow:
+      0 0 1px var(--outline-glow),
+      0 18px 60px rgba(17, 121, 151, 0.08);
   }
 
   .cyan-glow {

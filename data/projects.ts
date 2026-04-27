@@ -9,8 +9,8 @@ export const projectItems: ProjectItem[] = [
       "Predicted optical-flow reliability from scenario metadata using Farneback and RAFT error labels, then surfaced the results through plots, exported media, and a Streamlit explorer.",
     tags: ["Applied ML", "Computer Vision", "Research"],
     tech: ["Python", "TensorFlow", "PyTorch", "OpenCV", "scikit-learn", "Streamlit"],
-    image: "/images/optical-flow-reliability-cover.png",
-    imageAlt: "Three-panel optical flow project cover showing a scene preview, flow visualization, and RAFT EPE heatmap.",
+    image: "/images/optical-flow-reliability-preview.gif",
+    imageAlt: "Animated optical-flow scenario preview used by the reliability prediction demo.",
     heroEyebrow: "CSI4900 course project",
     sections: [
       {

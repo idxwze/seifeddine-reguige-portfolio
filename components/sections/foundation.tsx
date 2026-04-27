@@ -8,12 +8,14 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function FoundationSection() {
   return (
-    <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
+    <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14">
+      <div className="pointer-events-none absolute left-1/2 top-10 hidden h-[calc(100%-5rem)] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary/20 to-transparent lg:block" />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="lg:sticky lg:top-28"
       >
         <div className="space-y-3">
           <p className="section-kicker">Foundation</p>
@@ -32,7 +34,7 @@ export function FoundationSection() {
               className="object-contain object-top p-4 opacity-15 brightness-0 dark:opacity-20 dark:invert"
             />
           </div>
-          <CardContent className="space-y-6 p-8 md:p-10">
+          <CardContent className="space-y-7 p-8 md:p-10">
             <div className="space-y-2 pr-16 sm:pr-24">
               <h3 className="font-display text-3xl font-semibold tracking-[-0.06em] text-foreground">{education.institution}</h3>
               <p className="text-[11px] font-black uppercase tracking-[0.35em] text-primary">{education.honors}</p>
@@ -56,7 +58,7 @@ export function FoundationSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-        className="space-y-5"
+        className="space-y-6 lg:pt-3"
       >
         <div className="space-y-3">
           <p className="section-kicker text-muted-foreground">Timeline</p>
@@ -77,8 +79,16 @@ export function FoundationSection() {
             University IT experience across web systems, backend-adjacent workflows, reliability, and secure technical support.
           </p>
         </div>
-        {experienceItems.map((item) => (
-          <Card key={item.role} className="relative overflow-hidden rounded-[1.75rem] border-border/70 bg-card/72 transition duration-300 hover:border-primary/30 hover:bg-card/90">
+        <div className="relative space-y-5 pl-7 sm:pl-9">
+          <div className="absolute bottom-6 left-[0.78rem] top-2 w-px bg-gradient-to-b from-primary/65 via-primary/24 to-transparent sm:left-[0.95rem]" />
+          <div className="absolute bottom-4 left-[0.51rem] h-2.5 w-2.5 rotate-45 border-b border-r border-primary/55 sm:left-[0.68rem]" />
+          {experienceItems.map((item, index) => (
+            <div key={item.role} className="relative">
+              <div className="absolute -left-7 top-7 z-10 flex size-6 items-center justify-center rounded-full border border-primary/35 bg-background shadow-[0_0_0_6px_hsl(var(--background)),0_0_28px_hsl(var(--primary)/0.2)] sm:-left-9">
+                <span className="size-2 rounded-full bg-primary" />
+                <span className="sr-only">Timeline item {index + 1}</span>
+              </div>
+              <Card className="relative overflow-hidden rounded-[1.75rem] border-border/70 bg-card/72 transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-card/90">
             <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-2xl border border-border/60 bg-background/40 p-2">
               <Image
                 src="/images/uottawa-logo.png"
@@ -100,12 +110,17 @@ export function FoundationSection() {
               <p className="text-sm leading-7 text-muted-foreground">{item.summary}</p>
               <ul className="space-y-2.5 text-sm leading-7 text-muted-foreground">
                 {item.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
+                  <li key={bullet} className="flex gap-3">
+                    <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary/70" />
+                    <span>{bullet}</span>
+                  </li>
                 ))}
               </ul>
             </CardContent>
           </Card>
-        ))}
+            </div>
+          ))}
+        </div>
       </motion.div>
     </div>
   );
