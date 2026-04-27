@@ -108,8 +108,50 @@ export function ProjectsSection() {
                       ))}
                     </div>
 
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {project.tech.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[0.58rem] font-medium uppercase tracking-[0.18em] text-white/70"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
+                    {project.links?.length ? (
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {project.links.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          >
+                            {link.label}
+                            <ArrowUpRight className="size-3.5" />
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {project.highlights?.length ? (
+                      <div className="mt-7 space-y-3">
+                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Highlights</h4>
+                        <ul className="space-y-3">
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight} className="flex gap-3 text-sm leading-7 text-muted-foreground">
+                              <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+
                     <div className="mt-7 space-y-5">
-                      {project.sections.slice(0, 2).map((section) => (
+                      {project.sections.map((section) => (
                         <div key={section.title} className="space-y-2">
                           <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">{section.title}</h4>
                           {section.paragraphs.map((paragraph) => (
@@ -117,9 +159,37 @@ export function ProjectsSection() {
                               {paragraph}
                             </p>
                           ))}
+                          {section.bullets?.length ? (
+                            <ul className="space-y-3 pt-1">
+                              {section.bullets.map((bullet) => (
+                                <li key={bullet} className="flex gap-3 text-sm leading-7 text-muted-foreground">
+                                  <span className="mt-3 size-1.5 shrink-0 rounded-full bg-primary/80" />
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
                         </div>
                       ))}
                     </div>
+
+                    {project.supportingMedia?.length ? (
+                      <div className="mt-8 space-y-3">
+                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">Supporting media</h4>
+                        <div className="grid gap-3 sm:grid-cols-3">
+                          {project.supportingMedia.map((media) => (
+                            <div key={media.src} className="space-y-2">
+                              <div className="relative aspect-[1.08] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                                <Image src={media.src} alt={media.alt} fill className="object-cover" />
+                              </div>
+                              <p className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                                {media.label}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               ) : null}

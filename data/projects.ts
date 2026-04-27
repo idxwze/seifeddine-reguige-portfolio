@@ -3,39 +3,85 @@ import type { ProjectItem } from "@/data/types";
 export const projectItems: ProjectItem[] = [
   {
     slug: "honours-research-optical-flow-reliability-prediction",
-    title: "Honours Research: Optical Flow Reliability Prediction",
-    shortTitle: "Optical Flow Reliability",
-    summary: "Machine learning pipeline for predicting optical flow reliability from motion metadata in TFRecord-based video datasets.",
-    tags: ["Research", "Machine Learning", "Computer Vision"],
-    tech: ["Python", "PyTorch", "TensorFlow", "OpenCV"],
-    image: "/images/optical-flow-car.jpg",
-    imageAlt: "Motion and scene-analysis visual for the optical flow reliability research project.",
-    heroEyebrow: "Honours research",
+    title: "Predicting Optical Flow Reliability from Motion Scenario Metadata",
+    shortTitle: "Metadata-Based Optical Flow Reliability Predictor",
+    summary:
+      "Predicted optical-flow reliability from scenario metadata using Farneback and RAFT error labels, then surfaced the results through plots, exported media, and a Streamlit explorer.",
+    tags: ["Applied ML", "Computer Vision", "Research"],
+    tech: ["Python", "TensorFlow", "PyTorch", "OpenCV", "scikit-learn", "Streamlit"],
+    image: "/images/optical-flow-reliability-cover.png",
+    imageAlt: "Three-panel optical flow project cover showing a scene preview, flow visualization, and RAFT EPE heatmap.",
+    heroEyebrow: "CSI4900 course project",
     sections: [
       {
-        title: "Context",
+        title: "Overview",
         paragraphs: [
-          "Built as an honours research project focused on predicting whether optical flow outputs would remain reliable across video frame pairs.",
-          "The workflow used TFRecord-based datasets and engineered motion features from camera translation, rotation, and object dynamics."
+          "This CSI4900 project explores whether optical-flow reliability can be predicted from metadata alone rather than image pixels.",
+          "The goal was to forecast expected flow error before a heavy estimator is trusted or run across every scene at deployment time."
         ]
       },
       {
-        title: "Build",
+        title: "Pipeline",
         paragraphs: [
-          "Implemented data ingestion and decoding workflows for frame pairs and ground-truth flow, then evaluated both classical and deep optical flow estimators.",
-          "Computed per-pixel Endpoint Error (EPE) to derive sequence-level reliability targets and trained predictive models on top of those measurements."
+          "Implemented or integrated TFRecord ingestion, video and quantized ground-truth flow decoding, metadata feature extraction, and tabular dataset generation for three targets: reliability_score, epe_mean, and epe_mean_raft.",
+          "The workflow reads scenario-organized records, engineers compact motion features, trains regression baselines, evaluates them with repeated scenario-holdout splits, then saves metrics, prediction files, plots, and media exports for a Streamlit inspection app."
         ],
         bullets: [
-          "TensorFlow, PyTorch, OpenCV, scikit-learn, and Streamlit",
-          "Linear Regression, Random Forest, and Gradient Boosting experiments",
-          "Streamlit demo with flow visualizations, EPE heatmaps, and analysis tools"
+          "TFRecord scenarios → decode video and quantized ground-truth flow → extract motion metadata features → build CSV tables → generate reliability_score, epe_mean, and epe_mean_raft targets",
+          "Linear Regression, Random Forest Regressor, and Gradient Boosting Regressor with random row splits, scenario-holdout, and 10-repeat scenario-holdout evaluation",
+          "Saved artifact pipeline for metrics, predictions, plots, preview GIFs, RAFT flow visualizations, EPE heatmaps, and record-level Streamlit inspection"
         ]
       },
       {
-        title: "Takeaway",
+        title: "Results",
         paragraphs: [
-          "Achieved strong predictive performance with R² up to 0.90 while keeping the work grounded in measurable reliability targets."
+          "Random Forest was the strongest repeated scenario-holdout baseline for estimator-specific error prediction, reaching R² = 0.7987 ± 0.1147 and Spearman = 0.8466 ± 0.0604 on Farneback EPE, and R² = 0.6935 ± 0.1057 with Spearman = 0.8505 ± 0.0599 on RAFT EPE.",
+          "The project produced reusable outputs including combined CSV tables, metrics summaries, prediction CSVs, plots, sample-media exports, and an interactive Streamlit demo for record-level review."
         ]
+      }
+    ],
+    highlights: [
+      "Built an end-to-end optical-flow reliability pipeline from TFRecord ingestion to saved metrics, exported visual media, and an interactive Streamlit demo",
+      "Compared metadata-based prediction across three targets, including estimator-specific Farneback and RAFT EPE labels derived from ground-truth optical flow",
+      "Evaluated generalization with repeated scenario-holdout splits, where Random Forest reached R² = 0.7987 ± 0.1147 on Farneback EPE and R² = 0.6935 ± 0.1057 on RAFT EPE"
+    ],
+    links: [
+      {
+        label: "Repository",
+        href: "https://github.com/idxwze/optical-flow-reliability-metadata.git"
+      },
+      {
+        label: "Report",
+        href: "https://github.com/idxwze/optical-flow-reliability-metadata/blob/main/REPORT.md"
+      },
+      {
+        label: "Results",
+        href: "https://github.com/idxwze/optical-flow-reliability-metadata/blob/main/RESULTS.md"
+      },
+      {
+        label: "Workflow",
+        href: "https://github.com/idxwze/optical-flow-reliability-metadata/blob/main/WORKFLOW.md"
+      },
+      {
+        label: "Roadmap",
+        href: "https://github.com/idxwze/optical-flow-reliability-metadata/blob/main/ROADMAP.md"
+      }
+    ],
+    supportingMedia: [
+      {
+        src: "/images/optical-flow-reliability-metrics.png",
+        alt: "Metrics dashboard showing MAE, RMSE, R-squared, Spearman, and record-level prediction comparisons for the optical flow project.",
+        label: "Metrics explorer"
+      },
+      {
+        src: "/images/optical-flow-reliability-inspector.png",
+        alt: "Three-panel Streamlit inspection view with a preview GIF, flow visualization, and RAFT EPE heatmap.",
+        label: "Flow and heatmap inspector"
+      },
+      {
+        src: "/images/optical-flow-reliability-preview.gif",
+        alt: "Animated scenario preview GIF used in the optical flow reliability demo.",
+        label: "Scenario preview GIF"
       }
     ]
   },

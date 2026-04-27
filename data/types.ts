@@ -22,6 +22,17 @@ export interface ProjectSection {
   bullets?: string[];
 }
 
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
+export interface ProjectMediaItem {
+  src: string;
+  alt: string;
+  label: string;
+}
+
 export interface ProjectItem {
   slug: string;
   title: string;
@@ -34,6 +45,9 @@ export interface ProjectItem {
   status?: "In Progress" | "Planned / exploratory";
   heroEyebrow: string;
   sections: ProjectSection[];
+  highlights?: string[];
+  links?: ProjectLink[];
+  supportingMedia?: ProjectMediaItem[];
 }
 
 export interface SkillGroup {
