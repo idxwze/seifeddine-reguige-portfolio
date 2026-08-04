@@ -14,6 +14,9 @@ export function Footer() {
           <Link href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="transition hover:text-foreground">
             LinkedIn
           </Link>
+          <Link href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="transition hover:text-foreground">
+            GitHub
+          </Link>
           <Link href={siteConfig.resumeHref} target="_blank" rel="noopener noreferrer" className="transition hover:text-foreground">
             Resume
           </Link>

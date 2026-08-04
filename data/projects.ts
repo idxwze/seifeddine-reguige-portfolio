@@ -6,7 +6,7 @@ export const projectItems: ProjectItem[] = [
     title: "Predicting Optical Flow Reliability from Motion Scenario Metadata",
     shortTitle: "Metadata-Based Optical Flow Reliability Predictor",
     summary:
-      "Predicted optical-flow reliability from scenario metadata using Farneback and RAFT error labels, then surfaced the results through plots, exported media, and a Streamlit explorer.",
+      "R² ≈ 0.80 on the classical estimator vs 0.69 on RAFT, Spearman ≈ 0.85 — predicted from scenario metadata alone, before any expensive vision model runs. Built an end-to-end ML pipeline with Farneback and RAFT error labels, surfaced through a Streamlit explorer.",
     tags: ["Applied ML", "Computer Vision", "Research"],
     tech: ["Python", "TensorFlow", "PyTorch", "OpenCV", "scikit-learn", "Streamlit"],
     image: "/images/optical-flow-reliability-preview.gif",
@@ -188,6 +188,59 @@ export const projectItems: ProjectItem[] = [
         paragraphs: [
           "A clean mobile systems project tying authentication, backend communication, and maintainable application structure together."
         ]
+      }
+    ],
+    links: [
+      {
+        label: "Repository",
+        // TODO: replace with PCSurMesure GitHub repo URL
+        href: "https://github.com/TODO_PCSURMESURE_REPO"
+      }
+    ]
+  },
+  {
+    slug: "tsp-heuristics-visualizer",
+    title: "Traveling Salesman Problem Heuristics Visualizer",
+    shortTitle: "TSP Heuristics Visualizer",
+    summary:
+      "Implemented and compared constructive and local-search heuristics for approximate TSP optimization, with a lightweight visualization workflow to export and compare route quality across algorithms.",
+    tags: ["Algorithms", "Data Visualization", "C++"],
+    tech: ["C++", "Python", "Flask", "Algorithms"],
+    // TODO: add a cover image for this project at /images/tsp-visualizer-cover.png (or update path)
+    image: "/images/tsp-visualizer-cover.png",
+    imageAlt: "Visualization of TSP route heuristics comparing Nearest Neighbor, Insertion, and OPT algorithms.",
+    heroEyebrow: "Algorithm visualizer",
+    sections: [
+      {
+        title: "Overview",
+        paragraphs: [
+          "Implemented and compared five TSP heuristics — Nearest Neighbor, Insertion, Random, 2-OPT, and 3-OPT — to study how constructive and local-search strategies trade off solution quality and computation.",
+          "Built a visualization workflow to export city coordinates and route results for side-by-side comparison of path quality and algorithm behavior."
+        ]
+      },
+      {
+        title: "Build",
+        paragraphs: [
+          "Core heuristics implemented in C++ for performance. A lightweight Flask layer and Python visualization scripts handle coordinate export and route rendering.",
+          "The pipeline outputs per-algorithm route files and comparison plots, making it easy to inspect how each heuristic improves over the baseline Random tour."
+        ],
+        bullets: [
+          "Constructive heuristics: Nearest Neighbor, Insertion, Random",
+          "Local-search improvements: 2-OPT and 3-OPT swap passes",
+          "Flask + Python for coordinate export and route visualization"
+        ]
+      }
+    ],
+    highlights: [
+      "Compared five TSP heuristics — three constructive and two local-search — for approximate tour optimization",
+      "Built an export and visualization workflow to compare path quality and algorithm behavior across runs",
+      "Implemented in C++ with a lightweight Python/Flask layer for data export and rendering"
+    ],
+    links: [
+      {
+        label: "Repository",
+        // TODO: replace with TSP Heuristics Visualizer GitHub repo URL
+        href: "https://github.com/TODO_TSP_REPO"
       }
     ]
   }

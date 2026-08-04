@@ -6,6 +6,8 @@ export const siteConfig = {
   title: "Backend & Data/ML Software Developer",
   email: "sregu043@uottawa.ca",
   linkedin: "https://www.linkedin.com/in/seifeddine-reguige-4164bb251",
+  // TODO: replace with your GitHub profile URL
+  github: "https://github.com/TODO_YOUR_GITHUB_USERNAME",
   url: "https://seifeddine-reguige.vercel.app",
   resumeHref: "/files/Seifeddine-Reguige-Resume.pdf",
   heroSubheadline:
@@ -24,6 +26,6 @@ export const navigationItems: NavItem[] = [
 
 export const heroStats: StatItem[] = [
   { value: "2026", label: "Expected graduation" },
-  { value: "2", label: "University IT roles" },
+  { value: "4", label: "uOttawa roles" },
   { value: "ML + Backend", label: "Project focus" }
 ];
