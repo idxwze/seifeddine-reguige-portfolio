@@ -1,103 +1,98 @@
 "use client";
 
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { siteConfig } from "@/data/site";
 
+/**
+ * Organic intro overlay: cream full-viewport screen with a spinning dashed
+ * ring, the Caprasimo name, and the tagline. Fades out after ~2.6 s
+ * (1.7 s visible + 0.9 s fade). Only shown once per browser session.
+ */
 export function IntroOverlay() {
+  const [visible, setVisible] = useState(true);
   const prefersReducedMotion = useReducedMotion();
-  const [visible, setVisible] = React.useState(true);
 
-  React.useEffect(() => {
-    if (!prefersReducedMotion && window.sessionStorage.getItem("sr-intro-seen") === "1") {
+  useEffect(() => {
+    if (window.sessionStorage.getItem("sr-intro-seen") === "1") {
       setVisible(false);
       return;
     }
 
-    if (prefersReducedMotion) {
-      const timeout = window.setTimeout(() => setVisible(false), 240);
-      return () => window.clearTimeout(timeout);
-    }
-
-    const timeout = window.setTimeout(() => {
+    const delay = prefersReducedMotion ? 250 : 2600;
+    const t = window.setTimeout(() => {
       window.sessionStorage.setItem("sr-intro-seen", "1");
       setVisible(false);
-    }, 1325);
-    return () => window.clearTimeout(timeout);
+    }, delay);
+
+    return () => window.clearTimeout(t);
   }, [prefersReducedMotion]);
 
   return (
     <AnimatePresence>
-      {visible ? (
+      {visible && (
         <motion.div
+          key="intro"
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            transition: {
-              duration: prefersReducedMotion ? 0.18 : 0.65,
-              ease: [0.16, 1, 0.3, 1]
-            }
+            transition: { duration: prefersReducedMotion ? 0.15 : 0.9, ease: "easeInOut" },
           }}
-          className="pointer-events-none fixed inset-0 z-[120] overflow-hidden bg-background/72 backdrop-blur-2xl"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 10000,
+            background: "var(--color-bg)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,209,255,0.14),transparent_42%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(79,214,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(79,214,255,0.05)_1px,transparent_1px)] bg-[size:56px_56px] opacity-30" />
-          <motion.div
-            aria-hidden="true"
-            className="absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-border/50"
-            initial={{ scale: 0.86, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.6, transition: { duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] } }}
-            exit={{ scale: 1.06, opacity: 0, transition: { duration: prefersReducedMotion ? 0.18 : 0.55 } }}
+          {/* Spinning dashed ring */}
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: "50%",
+              border: "2px dashed var(--color-accent-300)",
+              marginBottom: "var(--space-4)",
+              animation: prefersReducedMotion ? "none" : "spinSlow 6s linear infinite",
+            }}
           />
+
+          {/* Name */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.97, filter: "blur(12px)" }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              filter: "blur(0px)",
-              transition: {
-                duration: prefersReducedMotion ? 0.18 : 0.72,
-                ease: [0.16, 1, 0.3, 1]
-              }
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: prefersReducedMotion ? 0 : 0.15 }}
+            style={{
+              fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+              fontSize: 52,
+              textAlign: "center",
+              color: "var(--color-text)",
             }}
-            exit={{
-              opacity: 0,
-              y: -12,
-              scale: 1.015,
-              filter: "blur(8px)",
-              transition: {
-                duration: prefersReducedMotion ? 0.18 : 0.52,
-                ease: [0.16, 1, 0.3, 1]
-              }
-            }}
-            className="absolute inset-0 flex items-center justify-center px-6"
           >
-            <div className="text-center">
-              <motion.p
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: prefersReducedMotion ? 0 : 0.08, duration: 0.4 } }}
-                className="mb-4 text-[10px] font-black uppercase tracking-[0.42em] text-primary"
-              >
-                Seifeddine Reguige
-              </motion.p>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: prefersReducedMotion ? 0 : 0.14, duration: 0.5 } }}
-                className="font-display text-[clamp(2.8rem,9vw,7rem)] font-semibold tracking-[-0.08em] text-foreground"
-              >
-                SR<span className="text-primary">.</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: prefersReducedMotion ? 0 : 0.2, duration: 0.45 } }}
-                className="mt-3 text-[0.62rem] font-bold uppercase tracking-[0.32em] text-muted-foreground"
-              >
-                {siteConfig.title}
-              </motion.p>
-            </div>
+            Seifeddine Reguige
+          </motion.div>
+
+          {/* Tagline */}
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: prefersReducedMotion ? 0 : 0.45 }}
+            style={{
+              fontSize: 13,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--color-accent-700)",
+              marginTop: "var(--space-3)",
+            }}
+          >
+            Backend, Data &amp; Applied ML
           </motion.div>
         </motion.div>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 }

@@ -1,91 +1,64 @@
 # Seifeddine Reguige Portfolio
 
-This is my personal portfolio site. I designed it as a compact one-page experience with a dark cinematic visual style, strong motion, and a clean structure that is easy to maintain over time.
+Personal portfolio site — a single scrolling page in the Organic design language (warm cream/terracotta/sage palette, Caprasimo display type, rounded organic shapes).
 
-The site is intentionally focused:
+Sections: Hero → About → Selected Work → Journey → Core Stack → Contact
 
-- cinematic hero
-- curated project grid with modal details
-- combined education and experience section
-- compact tech stack
-- simple contact area
+Deployed at [seifeddine-reguige.vercel.app](https://seifeddine-reguige.vercel.app)
 
 ## Stack
 
 - Next.js 14 App Router
-- React 18
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Radix UI primitives for dialog behavior
-- `next-themes` for dark-mode support
+- React 18 + TypeScript
+- Tailwind CSS (Organic design-system tokens)
+- Framer Motion (scroll reveal, intro animation, hover states)
+- Vercel Analytics
 
 ## Project Structure
 
 ```text
 app/                 routes, layout, metadata, global styles
-components/          layout, sections, and reusable UI primitives
-data/                editable portfolio content and TypeScript models
-lib/                 utility helpers and metadata helpers
-public/files/        public resume download
-public/images/       portfolio imagery
+components/
+  layout/            Navbar, Footer
+  sections/          Hero, About, Work, Journey, Stack, Contact
+  custom-cursor.tsx  pointer-ring cursor (degrades on touch)
+  intro-overlay.tsx  opening animation overlay
+data/                all editable content as TypeScript files
+lib/                 metadata helpers
+public/
+  files/             resume PDF
+  images/            photos, logos, project covers
+docs/
+  design_handoff/    Organic design reference (not shipped to production)
 ```
 
-## Where I Update Content
+## Where to Update Content
 
-Most of the portfolio content lives in `data/`:
+All copy and links live in `data/`:
 
-- `data/site.ts` for identity, links, navigation, and hero stats
-- `data/education.ts` for education details
-- `data/experience.ts` for experience entries
-- `data/projects.ts` for project cards and modal content
-- `data/skills.ts` for skill groups
+| File | Controls |
+|------|----------|
+| `data/site.ts` | Name, email, GitHub/LinkedIn, hero tag, bio paragraphs, nav items, stats |
+| `data/projects.ts` | `featuredProjects` array (4 Work section items) |
+| `data/experience.ts` | `timelineNodes` (Journey section) |
+| `data/skills.ts` | `organicSkillGroups` (Stack section) |
 
-To swap assets later:
+To swap assets:
 
-- replace images in `public/images/`
-- replace the resume file in `public/files/Seifeddine-Reguige-Resume.pdf`
+- Portrait: replace `public/images/me.jpg`
+- Resume: replace `public/files/Seifeddine-Reguige-Resume.pdf`
+- Project covers: replace `public/images/optical-flow-reliability-cover.png` (others use icon placeholders until real screenshots are ready)
 
 ## Development
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Run locally:
-
-```bash
-npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
-## Production
-
-Create a production build:
-
-```bash
-npm run build
-npm run start
+npm run dev        # http://localhost:3000
+npm run typecheck  # TypeScript check
+npm run lint       # ESLint
+npm run build      # production build
 ```
 
 ## Deployment
 
-This project is set up for Vercel out of the box.
-
-To deploy:
-
-1. Push the repository.
-2. Import it into Vercel.
-3. Use the default Next.js settings.
-4. Deploy.
-
-## Notes
-
-- The portfolio is dark by default and includes a cinematic intro overlay.
-- Project cards open in a modal to preserve the one-page flow.
-- Some images are still placeholders and can be replaced later.
-- The resume in `public/files/` is intentionally public and served as a downloadable asset.
-- If I change dependencies and need to refresh the lockfile, I can run `npm install` again locally.
+Push to `main` — Vercel auto-deploys via the GitHub integration.

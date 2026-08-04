@@ -47,7 +47,7 @@ export function ProjectsSection() {
                   </div>
                 ) : null}
                 <div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition duration-500 group-hover:opacity-100">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(95,226,255,0.12),transparent_0_36%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(29,122,140,0.16),transparent_0_36%)]" />
                 </div>
                 <div className="relative aspect-[1.12] overflow-hidden">
                   <Image
@@ -60,7 +60,7 @@ export function ProjectsSection() {
                         : "grayscale group-hover:grayscale-0"
                     }`}
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.1),rgba(2,10,14,0.82))]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,32,24,0.1),rgba(20,32,24,0.82))]" />
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between gap-4">
@@ -99,7 +99,7 @@ export function ProjectsSection() {
                   <div className="grid min-h-0 flex-1 gap-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
                     <div className="relative min-h-[18rem] lg:min-h-full">
                       <Image src={project.image} alt={project.imageAlt} fill className="object-cover" />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,10,14,0.1),rgba(2,10,14,0.3)_38%,rgba(2,10,14,0.78))]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,32,24,0.1),rgba(20,32,24,0.3)_38%,rgba(20,32,24,0.78))]" />
                     </div>
 
                     <div className="min-h-0 overflow-y-auto">

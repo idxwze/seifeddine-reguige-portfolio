@@ -1,152 +1,370 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
-import { heroStats, siteConfig } from "@/data/site";
-import { Button } from "@/components/ui/button";
+import { siteConfig, heroStats } from "@/data/site";
 
+/* ── SVG icons ──────────────────────────────────────────────────────── */
+const DownloadIcon = () => (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+  </svg>
+);
+const MailIcon = () => (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x={2} y={4} width={20} height={16} rx={3} /><path d="m22 7-10 6L2 7" />
+  </svg>
+);
+const LinkedInIcon = () => (
+  <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A5.5 5.5 0 0 1 16 8Z" />
+    <rect x={2} y={9} width={4} height={12} /><circle cx={4} cy={4} r={2} />
+  </svg>
+);
+const GitHubIcon = () => (
+  <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.3c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.6 2.8 5.5 3.1 5.5 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.1 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+  </svg>
+);
+
+/* ── Stagger animation variants ─────────────────────────────────────── */
 const container = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.18
-    }
-  }
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 24, filter: "blur(10px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  }
+/* ── Shared button styles ───────────────────────────────────────────── */
+const btnPrimary: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+  fontSize: 14,
+  color: "var(--color-bg)",
+  background: "var(--color-accent)",
+  border: "1px solid transparent",
+  borderRadius: 999,
+  padding: "var(--space-3) var(--space-4)",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background 0.15s ease",
+};
+const btnSecondary: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+  fontSize: 14,
+  color: "var(--color-text)",
+  background: "transparent",
+  border: "1px solid var(--color-divider)",
+  borderRadius: 999,
+  padding: "var(--space-3) var(--space-4)",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background 0.15s ease",
+};
+const btnIcon: React.CSSProperties = {
+  ...btnSecondary,
+  width: 36,
+  height: 36,
+  padding: 0,
+  justifyContent: "center",
 };
 
 export function HeroSection() {
+  const [photoHovered, setPhotoHovered] = useState(false);
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="hero" className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(55,220,255,0.2),transparent_0_19rem),radial-gradient(circle_at_76%_18%,rgba(38,117,255,0.13),transparent_0_21rem),radial-gradient(circle_at_52%_70%,rgba(55,220,255,0.08),transparent_0_26rem)] dark:bg-[radial-gradient(circle_at_12%_18%,rgba(55,220,255,0.16),transparent_0_18rem),radial-gradient(circle_at_88%_16%,rgba(38,117,255,0.12),transparent_0_20rem)]" />
-      <div className="container-shell pb-20 lg:pb-28">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-16">
-          <motion.div variants={container} initial="hidden" animate="show" className="space-y-8 lg:space-y-10">
-            <motion.div variants={item} className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-[0.62rem] font-bold uppercase tracking-[0.34em] text-primary cyan-glow">
-              Open to 2026 software, backend, data & ML roles
-            </motion.div>
+    <section
+      id="hero"
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        padding: "calc(var(--space-8) * 2) var(--space-8) var(--space-8)",
+      }}
+    >
+      {/* ── Diagonal hairline texture ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          opacity: 0.5,
+          backgroundImage: [
+            "repeating-linear-gradient(135deg, transparent, transparent 34px, color-mix(in srgb, var(--color-accent) 10%, transparent) 34px, color-mix(in srgb, var(--color-accent) 10%, transparent) 36px)",
+            "repeating-linear-gradient(45deg, transparent, transparent 34px, color-mix(in srgb, var(--color-accent-2) 8%, transparent) 34px, color-mix(in srgb, var(--color-accent-2) 8%, transparent) 36px)",
+          ].join(", "),
+        }}
+      />
 
-            <div className="space-y-4 lg:space-y-5">
-              <motion.h1 variants={item} className="text-5xl font-black uppercase leading-[0.88] tracking-[-0.085em] text-foreground sm:text-6xl lg:text-[6.2rem] xl:text-[7rem]">
-                SEIFEDDINE
-                <span className="outline-title block font-display">REGUIGE</span>
-              </motion.h1>
+      {/* ── Floating accent blobs ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: -80,
+          right: -60,
+          width: 380,
+          height: 380,
+          borderRadius: "50%",
+          background: "var(--color-accent-200)",
+          opacity: 0.55,
+          zIndex: 0,
+          animation: reducedMotion ? "none" : "floatY 7s ease-in-out infinite alternate",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: -120,
+          left: "8%",
+          width: 220,
+          height: 220,
+          borderRadius: "50%",
+          background: "var(--color-accent-2-200)",
+          opacity: 0.5,
+          zIndex: 0,
+          animation: reducedMotion ? "none" : "floatY 9s ease-in-out infinite alternate-reverse",
+        }}
+      />
 
-              <motion.p variants={item} className="text-[0.7rem] font-bold uppercase tracking-[0.34em] text-primary sm:text-xs">
-                {siteConfig.title}
-              </motion.p>
+      {/* ── Content ── */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          display: "flex",
+          gap: "var(--space-8)",
+          alignItems: "center",
+          flexWrap: "wrap",
+          maxWidth: 1240,
+          margin: "0 auto",
+        }}
+      >
+        {/* Left column */}
+        <motion.div
+          variants={container}
+          initial={reducedMotion ? undefined : "hidden"}
+          animate={reducedMotion ? undefined : "show"}
+          style={{ flex: "1 1 480px", display: "flex", flexDirection: "column", gap: "var(--space-4)" }}
+        >
+          {/* Tag */}
+          <motion.span
+            variants={reducedMotion ? undefined : item}
+            style={{
+              display: "inline-flex",
+              alignSelf: "flex-start",
+              alignItems: "center",
+              fontSize: 11,
+              letterSpacing: "0.02em",
+              padding: "3px 10px",
+              borderRadius: 999,
+              background: "var(--color-accent-100)",
+              color: "var(--color-accent-800)",
+            }}
+          >
+            {siteConfig.heroTag}
+          </motion.span>
 
-              <motion.p variants={item} className="max-w-xl text-balance text-lg font-semibold leading-7 text-foreground sm:text-xl">
-                Computer Science student at uOttawa building backend systems, data workflows, and ML-assisted software with careful engineering habits.
-              </motion.p>
+          {/* H1 */}
+          <motion.h1
+            variants={reducedMotion ? undefined : item}
+            style={{ fontSize: 74, lineHeight: 1.02, marginTop: "var(--space-2)" }}
+          >
+            Seifeddine
+            <br />
+            Reguige
+          </motion.h1>
 
-              <motion.p variants={item} className="max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
-                {siteConfig.heroSubheadline}
-              </motion.p>
-            </div>
+          {/* H2 */}
+          <motion.h2
+            variants={reducedMotion ? undefined : item}
+            style={{ fontSize: 26, color: "var(--color-accent-700)", marginTop: "var(--space-1)" }}
+          >
+            Backend, Data &amp; Applied ML
+          </motion.h2>
 
-            <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="h-12 rounded-2xl px-6 text-[0.72rem] font-bold uppercase tracking-[0.18em]">
-                <a href={siteConfig.resumeHref} target="_blank" rel="noopener noreferrer">
-                  View Resume
-                  <ArrowRight className="size-4" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-12 rounded-2xl border-border/70 bg-card/55 px-6 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-foreground hover:bg-card/80"
-              >
-                <a href="#projects">
-                  View Projects
-                  <ArrowRight className="size-4" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="icon"
-                variant="ghost"
-                className="hidden h-12 w-12 rounded-2xl border border-border/70 bg-card/55 text-foreground hover:bg-card/80 sm:inline-flex"
-              >
-                <a href="#contact" aria-label="Jump to contact section">
-                  <Mail className="size-4" />
-                </a>
-              </Button>
-            </motion.div>
+          {/* Paragraph */}
+          <motion.p
+            variants={reducedMotion ? undefined : item}
+            style={{ fontSize: 18, maxWidth: 540, marginTop: "var(--space-2)", opacity: 0.85, lineHeight: 1.6 }}
+          >
+            {siteConfig.heroHeadline}
+          </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap gap-3 pt-1">
-              {heroStats.map((stat) => (
-                <div key={stat.label} className="rounded-full border border-border/70 bg-card/55 px-4 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <span className="mr-2 font-bold text-foreground">{stat.value}</span>
+          {/* CTA row */}
+          <motion.div
+            variants={reducedMotion ? undefined : item}
+            style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap", marginTop: "var(--space-4)" }}
+          >
+            <a
+              href={siteConfig.resumeHref}
+              download
+              style={btnPrimary}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent-600)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent)")}
+            >
+              <DownloadIcon />
+              Download resume
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              style={btnSecondary}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(32,30,29,0.07)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+            >
+              <MailIcon />
+              Get in touch
+            </a>
+          </motion.div>
+
+          {/* Social icon buttons */}
+          <motion.div
+            variants={reducedMotion ? undefined : item}
+            style={{ display: "flex", gap: "var(--space-2)" }}
+          >
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              style={btnIcon}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(32,30,29,0.07)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+            >
+              <LinkedInIcon />
+            </a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              style={btnIcon}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(32,30,29,0.07)")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+            >
+              <GitHubIcon />
+            </a>
+          </motion.div>
+
+          {/* Stats strip */}
+          <motion.div
+            variants={reducedMotion ? undefined : item}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+              gap: "var(--space-4)",
+              marginTop: "var(--space-4)",
+              maxWidth: 560,
+            }}
+          >
+            {heroStats.map((stat) => (
+              <div key={stat.label}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+                    fontSize: 26,
+                    color: "var(--color-accent-700)",
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div style={{ fontSize: 12, opacity: 0.65, marginTop: 2 }}>
                   {stat.label}
                 </div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto w-full max-w-[28rem] lg:max-w-[29rem]"
-          >
-            <motion.div
-              animate={reducedMotion ? undefined : { y: [0, -8, 0] }}
-              transition={reducedMotion ? undefined : { duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
-              className="surface group/avatar relative overflow-hidden rounded-[2rem] p-4 sm:p-5"
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(67,224,255,0.2),transparent_0_34%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
-              <div className="relative space-y-4">
-                <div className="flex items-center justify-between rounded-[1.2rem] border border-border/60 bg-background/45 px-4 py-3 backdrop-blur-sm">
-                  <div>
-                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.34em] text-primary">Core Toolkit</p>
-                    <p className="mt-1 text-sm text-foreground">Java, Python, JavaScript, PHP, SQL</p>
-                  </div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_16px_rgba(74,222,255,0.9)]" />
-                </div>
-
-                <div className="relative overflow-hidden rounded-[1.6rem] border border-border/60 bg-[#040b10]">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/55" />
-                  <Image
-                    src="/images/me.jpg"
-                    alt="Portrait of Seifeddine Reguige."
-                    width={900}
-                    height={1200}
-                    priority
-                    className="aspect-[0.86] w-full object-cover grayscale transition duration-700 ease-out group-hover/avatar:scale-[1.015] group-hover/avatar:grayscale-0"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
-                    <div className="rounded-2xl border border-white/10 bg-black/35 px-3 py-2 backdrop-blur-sm">
-                      <p className="text-[0.56rem] font-bold uppercase tracking-[0.28em] text-primary">Focused on</p>
-                      <p className="mt-1 text-xs text-white">Backend, data analysis, ML, computer vision</p>
-                    </div>
-                    <div className="rounded-2xl border border-white/10 bg-black/35 px-3 py-2 text-right backdrop-blur-sm">
-                      <p className="text-[0.56rem] font-bold uppercase tracking-[0.28em] text-primary">Education</p>
-                      <p className="mt-1 text-xs text-white">uOttawa CS (Co-op)</p>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </motion.div>
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
+
+        {/* Right column — circular portrait with spinning rings */}
+        <motion.div
+          initial={reducedMotion ? undefined : { opacity: 0, y: 24 }}
+          animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ flex: "1 1 320px", display: "flex", justifyContent: "center" }}
+        >
+          <div
+            style={{ position: "relative", width: 340, height: 340 }}
+            onMouseEnter={() => setPhotoHovered(true)}
+            onMouseLeave={() => setPhotoHovered(false)}
+          >
+            {/* Ring 1 — accent-300, 22s, scales to 1.18× on hover */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: -16,
+                transition: "transform 0.45s ease, opacity 0.45s ease",
+                transform: photoHovered ? "scale(1.18)" : "scale(1)",
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  border: "2px dashed var(--color-accent-300)",
+                  opacity: 0.6,
+                  animation: reducedMotion ? "none" : "spinSlow 22s linear infinite",
+                }}
+              />
+            </div>
+
+            {/* Ring 2 — accent-2-300, 30s reverse, scales to 1.3× on hover */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: -34,
+                transition: "transform 0.45s ease, opacity 0.45s ease",
+                transform: photoHovered ? "scale(1.3)" : "scale(1)",
+                opacity: photoHovered ? 0.8 : 1,
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  border: "2px dashed var(--color-accent-2-300)",
+                  opacity: 0.4,
+                  animation: reducedMotion ? "none" : "spinSlow 30s linear infinite reverse",
+                }}
+              />
+            </div>
+
+            {/* Portrait */}
+            <Image
+              src="/images/me.jpg"
+              alt="Portrait of Seifeddine Reguige"
+              width={340}
+              height={340}
+              priority
+              className="washed"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "50%",
+                boxShadow: "var(--shadow-lg)",
+                position: "relative",
+                zIndex: 1,
+                transition: "transform 0.45s ease",
+                transform: photoHovered ? "scale(1.06)" : "scale(1)",
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

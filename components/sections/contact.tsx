@@ -1,57 +1,184 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Download, Linkedin, Mail } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/data/site";
-import { Button } from "@/components/ui/button";
+
+const scrollReveal = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true, amount: 0.15 } as const,
+};
+
+const DownloadIcon = () => (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+  </svg>
+);
+const MailIcon = () => (
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x={2} y={4} width={20} height={16} rx={3} /><path d="m22 7-10 6L2 7" />
+  </svg>
+);
+
+const btnPrimary: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+  fontSize: 14,
+  color: "var(--color-bg)",
+  background: "var(--color-accent)",
+  border: "1px solid transparent",
+  borderRadius: 999,
+  padding: "var(--space-3) var(--space-4)",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background 0.15s ease",
+};
+const btnSecondary: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+  fontSize: 14,
+  color: "var(--color-text)",
+  background: "transparent",
+  border: "1px solid var(--color-divider)",
+  borderRadius: 999,
+  padding: "var(--space-3) var(--space-4)",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background 0.15s ease",
+};
+const btnGhost: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 6,
+  fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+  fontSize: 14,
+  color: "var(--color-accent)",
+  background: "transparent",
+  border: "1px solid transparent",
+  borderRadius: 999,
+  padding: "var(--space-3) var(--space-4)",
+  textDecoration: "none",
+  cursor: "pointer",
+  transition: "background 0.15s ease",
+};
 
 export function ContactSection() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      className="surface relative overflow-hidden rounded-[2rem] px-6 py-14 text-center sm:px-10 sm:py-16 lg:px-14"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(82,225,255,0.12),transparent_0_34%),linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top,rgba(82,225,255,0.12),transparent_0_34%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]" />
-      <div className="relative mx-auto max-w-3xl space-y-8">
-        <div className="space-y-3">
-          <p className="section-kicker">Reach Out</p>
-          <h2 className="section-title mx-auto max-w-[10ch]">Let&apos;s Talk Software</h2>
-        </div>
+  const reducedMotion = useReducedMotion();
 
-        <p className="mx-auto max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-          Open to software roles where backend fundamentals, data work, and applied ML matter. The fastest way to reach me is by email or LinkedIn.
+  return (
+    <motion.section
+      id="contact"
+      {...(reducedMotion ? {} : scrollReveal)}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        maxWidth: 1240,
+        margin: "var(--space-8) auto calc(var(--space-8) * 2)",
+        padding: "calc(var(--space-8) * 1.4) var(--space-8)",
+      }}
+    >
+      {/* Floating sage circle */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: -100,
+          right: -60,
+          width: 300,
+          height: 300,
+          borderRadius: "50%",
+          background: "var(--color-accent-2-200)",
+          opacity: 0.5,
+          zIndex: 0,
+        }}
+      />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <p
+          style={{
+            fontSize: 10,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "var(--color-accent-700)",
+            marginBottom: "var(--space-2)",
+          }}
+        >
+          Contact
         </p>
 
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg" className="h-12 rounded-2xl px-6 text-[0.72rem] font-bold uppercase tracking-[0.18em]">
-            <Link href={`mailto:${siteConfig.email}`}>
-              <Mail className="size-4" />
-              Send Message
-            </Link>
-          </Button>
-          <Button asChild size="icon" variant="outline" className="h-12 w-12 rounded-2xl border-border/70 bg-card/55 hover:bg-card/80">
-            <Link href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
-              <Linkedin className="size-4" />
-            </Link>
-          </Button>
-          <Button asChild size="icon" variant="outline" className="h-12 w-12 rounded-2xl border-border/70 bg-card/55 hover:bg-card/80">
-            <Link href={siteConfig.resumeHref} target="_blank" rel="noopener noreferrer" aria-label="Open resume PDF">
-              <Download className="size-4" />
-            </Link>
-          </Button>
-        </div>
+        <h2 style={{ fontSize: 52, maxWidth: 640 }}>
+          Let&apos;s build something reliable together.
+        </h2>
 
-        <div className="flex flex-col items-center justify-center gap-3 text-xs uppercase tracking-[0.28em] text-muted-foreground sm:flex-row sm:gap-6">
-          <Link href={`mailto:${siteConfig.email}`} className="transition hover:text-primary">
+        <p
+          style={{
+            fontSize: 16,
+            maxWidth: 520,
+            opacity: 0.8,
+            marginTop: "var(--space-3)",
+          }}
+        >
+          Open to backend, systems, and applied ML roles and collaborations. Reach
+          out by email or connect on LinkedIn.
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-3)",
+            flexWrap: "wrap",
+            marginTop: "var(--space-6)",
+          }}
+        >
+          <a
+            href={`mailto:${siteConfig.email}`}
+            style={btnPrimary}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent-600)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent)")}
+          >
+            <MailIcon />
             {siteConfig.email}
-          </Link>
-          <span>{siteConfig.location}</span>
+          </a>
+
+          <a
+            href={siteConfig.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={btnSecondary}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(32,30,29,0.07)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href={siteConfig.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={btnSecondary}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(32,30,29,0.07)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+          >
+            GitHub
+          </a>
+
+          <a
+            href={siteConfig.resumeHref}
+            download
+            style={btnGhost}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "rgba(198,113,57,0.1)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.background = "transparent")}
+          >
+            <DownloadIcon />
+            Resume
+          </a>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }

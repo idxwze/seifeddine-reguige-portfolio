@@ -1,3 +1,4 @@
+/* ── Nav / Stats ────────────────────────────────────────────────────── */
 export interface NavItem {
   label: string;
   href: string;
@@ -8,6 +9,7 @@ export interface StatItem {
   label: string;
 }
 
+/* ── Experience ─────────────────────────────────────────────────────── */
 export interface ExperienceItem {
   role: string;
   organization: string;
@@ -16,6 +18,30 @@ export interface ExperienceItem {
   bullets: string[];
 }
 
+/* ── Journey timeline (Organic section) ─────────────────────────────── */
+export interface TimelineNode {
+  role: string;
+  org: string;
+  dates: string;
+  /** true = show uOttawa logo; false = show dot */
+  logo: boolean;
+}
+
+/* ── Featured projects (Work section, 4 items) ───────────────────────── */
+export type ProjectVisual = "photo" | "house" | "box" | "film";
+
+export interface FeaturedProject {
+  index: string;
+  title: string;
+  shortDescription: string;
+  visual: ProjectVisual;
+  repoHref: string;
+  /** Only used when visual === "photo" */
+  photoSrc?: string;
+  photoAlt?: string;
+}
+
+/* ── Full project detail (for future detail pages) ───────────────────── */
 export interface ProjectSection {
   title: string;
   paragraphs: string[];
@@ -50,7 +76,16 @@ export interface ProjectItem {
   supportingMedia?: ProjectMediaItem[];
 }
 
+/* ── Skills ──────────────────────────────────────────────────────────── */
 export interface SkillGroup {
   title: string;
+  items: string[];
+}
+
+export type TagClass = "tag-accent" | "tag-accent-2" | "tag-neutral";
+
+export interface SkillGroupOrganic {
+  title: string;
+  tagClass: TagClass;
   items: string[];
 }

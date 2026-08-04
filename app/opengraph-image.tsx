@@ -20,16 +20,16 @@ export default function Image() {
           justifyContent: "space-between",
           padding: "56px",
           background:
-            "radial-gradient(circle at top left, rgba(56, 215, 255, 0.22), transparent 30%), radial-gradient(circle at bottom right, rgba(45, 112, 255, 0.18), transparent 32%), #020a0e",
-          color: "#f1fbff"
+            "radial-gradient(circle at top left, rgba(120, 214, 170, 0.22), transparent 30%), radial-gradient(circle at bottom right, rgba(93, 210, 230, 0.16), transparent 32%), #0a1712",
+          color: "#f5f1e8"
         }}
       >
         <div style={{ fontSize: 28, opacity: 0.82 }}>Portfolio</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.02, letterSpacing: "-0.06em" }}>{siteConfig.name}</div>
-          <div style={{ fontSize: 28, maxWidth: 1000, color: "rgba(241,251,255,0.84)" }}>{siteConfig.heroSubheadline}</div>
+          <div style={{ fontSize: 28, maxWidth: 1000, color: "rgba(245,241,232,0.84)" }}>{siteConfig.heroHeadline}</div>
         </div>
-        <div style={{ display: "flex", fontSize: 24, color: "#79e4ff" }}>{siteConfig.location}</div>
+        <div style={{ display: "flex", fontSize: 24, color: "#e07a5f" }}>{siteConfig.location}</div>
       </div>
     ),
     size

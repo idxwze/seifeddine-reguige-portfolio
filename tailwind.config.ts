@@ -1,80 +1,106 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
+  // No darkMode — Organic system is light-only
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    "./content/**/*.{md,mdx}"
   ],
   theme: {
-    container: {
-      center: true,
-      padding: "1.5rem",
-      screens: {
-        "2xl": "1200px"
-      }
-    },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))"
+        /* Organic semantic tokens */
+        "org-bg":      "var(--color-bg)",
+        "org-surface": "var(--color-surface)",
+        "org-text":    "var(--color-text)",
+        "org-accent":  "var(--color-accent)",
+        "org-accent2": "var(--color-accent-2)",
+        "org-divider": "var(--color-divider)",
+
+        /* Neutral ramp */
+        "org-neutral": {
+          100: "var(--color-neutral-100)",
+          200: "var(--color-neutral-200)",
+          300: "var(--color-neutral-300)",
+          400: "var(--color-neutral-400)",
+          500: "var(--color-neutral-500)",
+          600: "var(--color-neutral-600)",
+          700: "var(--color-neutral-700)",
+          800: "var(--color-neutral-800)",
+          900: "var(--color-neutral-900)",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))"
+
+        /* Terracotta accent ramp */
+        "org-a": {
+          100: "var(--color-accent-100)",
+          200: "var(--color-accent-200)",
+          300: "var(--color-accent-300)",
+          400: "var(--color-accent-400)",
+          500: "var(--color-accent-500)",
+          600: "var(--color-accent-600)",
+          700: "var(--color-accent-700)",
+          800: "var(--color-accent-800)",
+          900: "var(--color-accent-900)",
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))"
+
+        /* Sage accent-2 ramp */
+        "org-a2": {
+          100: "var(--color-accent-2-100)",
+          200: "var(--color-accent-2-200)",
+          300: "var(--color-accent-2-300)",
+          400: "var(--color-accent-2-400)",
+          500: "var(--color-accent-2-500)",
+          600: "var(--color-accent-2-600)",
+          700: "var(--color-accent-2-700)",
+          800: "var(--color-accent-2-800)",
+          900: "var(--color-accent-2-900)",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))"
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))"
-        }
       },
-      borderRadius: {
-        xl: "1rem",
-        lg: "calc(var(--radius) - 2px)",
-        md: "calc(var(--radius) - 4px)",
-        sm: "calc(var(--radius) - 6px)"
-      },
+
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        display: ["var(--font-display)"]
+        caprasimo: ["var(--font-caprasimo)", "system-ui", "sans-serif"],
+        figtree:   ["var(--font-figtree)",   "system-ui", "sans-serif"],
+        sans:      ["var(--font-figtree)",   "system-ui", "sans-serif"],
       },
-      backgroundImage: {
-        "hero-grid":
-          "linear-gradient(to right, color-mix(in srgb, hsl(var(--foreground)) 8%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, hsl(var(--foreground)) 8%, transparent) 1px, transparent 1px)"
+
+      maxWidth: {
+        page: "1240px",
       },
+
+      borderRadius: {
+        "org-sm": "var(--radius-sm)",
+        "org-md": "var(--radius-md)",
+        "org-lg": "var(--radius-lg)",
+      },
+
+      boxShadow: {
+        "org-sm": "var(--shadow-sm)",
+        "org-md": "var(--shadow-md)",
+        "org-lg": "var(--shadow-lg)",
+      },
+
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" }
+        floatY: {
+          "0%":   { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-18px)" },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" }
-        }
+        spinSlow: {
+          from: { transform: "rotate(0deg)" },
+          to:   { transform: "rotate(360deg)" },
+        },
       },
+
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
-      }
-    }
+        "float-y-7":  "floatY 7s ease-in-out infinite alternate",
+        "float-y-9":  "floatY 9s ease-in-out infinite alternate-reverse",
+        "spin-slow-22": "spinSlow 22s linear infinite",
+        "spin-slow-30": "spinSlow 30s linear infinite reverse",
+        "spin-slow-6":  "spinSlow 6s linear infinite",
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;

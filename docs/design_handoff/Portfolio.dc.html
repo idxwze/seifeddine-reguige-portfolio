@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-b7924128-9855-477b-b4a2-c993496ec57f/styles.css">
+  <script src="_ds/organic-b7924128-9855-477b-b4a2-c993496ec57f/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style id="__portfolio_resets">
+    a { text-decoration: none; }
+    a.nav-link:hover { color: var(--color-accent); }
+    @keyframes floatY { 0% { transform: translateY(0); } 100% { transform: translateY(-18px); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes introOut { 0%, 68% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+  </style>
+</helmet>
+<div style="background: var(--color-bg); min-height: 100vh; overflow-x: hidden; cursor: none;">
+  <div ref="{{ cursorEl }}" style="position: fixed; top: 0; left: 0; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--color-accent); pointer-events: none; z-index: 9999; transform: translate(-100px, -100px); transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;"></div>
+
+  <div style="position: fixed; inset: 0; z-index: 10000; background: var(--color-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; animation: introOut 0.9s ease forwards; animation-delay: 1.7s;">
+    <div style="width: 64px; height: 64px; border-radius: 50%; border: 2px dashed var(--color-accent-300); margin-bottom: var(--space-4); animation: spinSlow 6s linear infinite;"></div>
+    <div style="font-family: var(--font-heading); font-size: 52px; text-align: center; animation: fadeUp 0.8s ease both; animation-delay: 0.15s;">Seifeddine Reguige</div>
+    <div style="font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); margin-top: var(--space-3); animation: fadeUp 0.8s ease both; animation-delay: 0.45s;">Backend, Data &amp; Applied ML</div>
+  </div>
+
+  <nav class="nav" style="position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--color-bg) 88%, transparent); backdrop-filter: blur(8px); padding: var(--space-3) var(--space-8);">
+    <div class="nav-brand">Seifeddine Reguige</div>
+    <a class="nav-link" href="#work" style="color: inherit; font-size: 14px;">Work</a>
+    <a class="nav-link" href="#journey" style="color: inherit; font-size: 14px;">Journey</a>
+    <a class="nav-link" href="#stack" style="color: inherit; font-size: 14px;">Stack</a>
+    <a class="nav-link" href="#contact" style="color: inherit; font-size: 14px;">Contact</a>
+    <a class="btn btn-primary" href="{{ resumeHref }}" download="">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+      Resume
+    </a>
+  </nav>
+
+  <section id="hero" style="position: relative; overflow: hidden; padding: calc(var(--space-8) * 2) var(--space-8) var(--space-8);">
+    <div style="position: absolute; inset: 0; z-index: 0; opacity: 0.5; background-image: repeating-linear-gradient(135deg, transparent, transparent 34px, color-mix(in srgb, var(--color-accent) 10%, transparent) 34px, color-mix(in srgb, var(--color-accent) 10%, transparent) 36px), repeating-linear-gradient(45deg, transparent, transparent 34px, color-mix(in srgb, var(--color-accent-2) 8%, transparent) 34px, color-mix(in srgb, var(--color-accent-2) 8%, transparent) 36px);"></div>
+    <div style="position: absolute; top: -80px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: var(--color-accent-200); opacity: 0.55; z-index: 0; animation: floatY 7s ease-in-out infinite alternate;"></div>
+    <div style="position: absolute; bottom: -120px; left: 8%; width: 220px; height: 220px; border-radius: 50%; background: var(--color-accent-2-200); opacity: 0.5; z-index: 0; animation: floatY 9s ease-in-out infinite alternate-reverse;"></div>
+    <div style="position: relative; z-index: 1; display: flex; gap: var(--space-8); align-items: center; flex-wrap: wrap; max-width: 1240px; margin: 0 auto;">
+      <div style="flex: 1 1 480px;">
+        <span class="tag tag-accent" style="animation: fadeUp 0.7s ease both;">Computer Science @ uOttawa · Summer 2026 Grad</span>
+        <h1 style="font-size: 74px; margin-top: var(--space-4); line-height: 1.02; animation: fadeUp 0.7s ease both; animation-delay: 0.08s;">Seifeddine<br>Reguige</h1>
+        <h2 style="font-size: 26px; color: var(--color-accent-700); margin-top: var(--space-2); animation: fadeUp 0.7s ease both; animation-delay: 0.16s;">Backend, Data &amp; Applied ML</h2>
+        <p style="font-size: 18px; max-width: 540px; margin-top: var(--space-4); opacity: 0.85; animation: fadeUp 0.7s ease both; animation-delay: 0.24s;">I build practical software systems with a backend-first mindset, using data, ML, and clear engineering fundamentals to turn messy technical problems into usable tools.</p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6); animation: fadeUp 0.7s ease both; animation-delay: 0.32s;">
+          <a class="btn btn-primary" href="{{ resumeHref }}" download="" style="padding: var(--space-3) var(--space-4);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            Download resume
+          </a>
+          <a class="btn btn-secondary" href="mailto:{{ email }}" style="padding: var(--space-3) var(--space-4);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"></rect><path d="m22 7-10 6L2 7"></path></svg>
+            Get in touch
+          </a>
+        </div>
+        <div style="display: flex; gap: var(--space-2); margin-top: var(--space-4); animation: fadeUp 0.7s ease both; animation-delay: 0.4s;">
+          <a class="btn btn-secondary btn-icon" href="{{ linkedinHref }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A5.5 5.5 0 0 1 16 8Z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a class="btn btn-secondary btn-icon" href="{{ githubHref }}" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.3c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.6 2.8 5.5 3.1 5.5 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.1 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+          </a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-4); margin-top: var(--space-8); max-width: 560px; animation: fadeUp 0.7s ease both; animation-delay: 0.48s;">
+          <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="4">
+            <div>
+              <div style="font-family: var(--font-heading); font-size: 26px; color: var(--color-accent-700);">{{ stat.value }}</div>
+              <div style="font-size: 12px; opacity: 0.65; margin-top: 2px;">{{ stat.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex: 1 1 320px; display: flex; justify-content: center; animation: fadeUp 0.8s ease both; animation-delay: 0.2s;">
+        <div style="position: relative; width: 340px; height: 340px;" onMouseEnter="{{ handlePhotoEnter }}" onMouseLeave="{{ handlePhotoLeave }}">
+          <div ref="{{ ring1Ref }}" style="position: absolute; inset: -16px; transition: transform 0.45s ease, opacity 0.45s ease;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; border: 2px dashed var(--color-accent-300); opacity: 0.6; animation: spinSlow 22s linear infinite;"></div>
+          </div>
+          <div ref="{{ ring2Ref }}" style="position: absolute; inset: -34px; transition: transform 0.45s ease, opacity 0.45s ease;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; border: 2px dashed var(--color-accent-2-300); opacity: 0.4; animation: spinSlow 30s linear infinite reverse;"></div>
+          </div>
+          <img ref="{{ photoImgRef }}" class="washed" src="assets/me.jpg" alt="Portrait of Seifeddine Reguige" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: var(--shadow-lg); position: relative; z-index: 1; transition: transform 0.45s ease;"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="js-reveal" style="max-width: 1240px; margin: var(--space-8) auto; padding: calc(var(--space-8) * 1.2) var(--space-8); background: var(--color-surface); border-radius: var(--radius-lg); opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;">
+    <h6 style="color: var(--color-accent-700);">About</h6>
+    <h2 style="margin-bottom: var(--space-6);">Currently building research data infrastructure at uOttawa</h2>
+    <div style="display: flex; gap: var(--space-8); flex-wrap: wrap;">
+      <div style="flex: 2 1 460px; font-size: 16px; line-height: 1.7;">
+        <p>Computer Science student at the University of Ottawa, graduating August 2026, specializing in backend development, systems programming, networking, and applied machine learning. I enjoy breaking down complex technical problems, building reliable systems, and understanding how software and networks behave under real-world constraints.</p>
+        <p>My experience spans Linux systems, backend engineering (Java, C++, Python), database design, network protocols, packet analysis, and cybersecurity tooling. I have built projects in C++, Java, Go, PHP, SQL, and Python, including recommender systems, computer vision pipelines, and Android applications.</p>
+        <p>I currently work as a Research Assistant / Data Scientist with the Faculty of Social Sciences at uOttawa, contributing to a secure digital research infrastructure for sensitive public health and policy data.</p>
+      </div>
+      <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: var(--space-3);">
+        <div class="card elev-sm" style="background: var(--color-bg);">
+          <span class="card-kicker">Based in</span>
+          <span class="card-title" style="font-size: 16px;">Ottawa, Ontario</span>
+        </div>
+        <div class="card elev-sm" style="background: var(--color-bg);">
+          <span class="card-kicker">Languages</span>
+          <span class="card-title" style="font-size: 16px;">English &amp; French, fluent</span>
+        </div>
+        <div class="card elev-sm" style="background: var(--color-bg); flex-direction: row; align-items: center; gap: var(--space-3);">
+          <img src="assets/uottawa-logo.png" alt="University of Ottawa" style="width: 34px; height: 34px; object-fit: contain;"/>
+          <div>
+            <span class="card-title" style="font-size: 14px; display: block;">BSc Computer Science</span>
+            <span class="text-muted" style="font-size: 12px;">Summer 2026 grad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="js-reveal" style="position: relative; max-width: 1240px; margin: 0 auto; padding: calc(var(--space-8) * 1.5) var(--space-8); overflow: hidden; opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;">
+    <div style="position: absolute; top: -10px; left: -6px; font-family: var(--font-heading); font-size: 160px; color: var(--color-accent-100); z-index: 0; line-height: 1; user-select: none;">WORK</div>
+    <div style="position: relative; z-index: 1;">
+      <h6 style="color: var(--color-accent-700);">Selected Work</h6>
+      <h2 style="margin-bottom: var(--space-8);">Projects</h2>
+
+      <div style="display: flex; align-items: stretch; gap: 0;">
+        <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="4">
+          <div style="flex: 1 1 0; min-width: 180px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 var(--space-4); position: relative;">
+            <div style="position: absolute; top: -26px; font-family: var(--font-heading); font-size: 56px; color: var(--color-accent-200); z-index: 0; line-height: 1;">{{ proj.index }}</div>
+            <sc-if value="{{ proj.isPhoto }}" hint-placeholder-val="{{ true }}">
+              <img class="washed" src="assets/optical-flow-cover.png" alt="Optical flow reliability predictor" style="position: relative; z-index: 1; width: 170px; height: 170px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-md); transition: transform 0.35s ease;" style-hover="transform: scale(1.06);"/>
+            </sc-if>
+            <sc-if value="{{ proj.isHouse }}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; z-index: 1; width: 170px; height: 170px; border-radius: 50%; background: var(--color-accent-2-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: transform 0.35s ease;" style-hover="transform: scale(1.06);">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-2-800)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"></path><path d="M6 10v9h5v-5h2v5h5v-9"></path></svg>
+              </div>
+            </sc-if>
+            <sc-if value="{{ proj.isBox }}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; z-index: 1; width: 170px; height: 170px; border-radius: 50%; background: var(--color-accent-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: transform 0.35s ease;" style-hover="transform: scale(1.06);">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-800)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"></path><path d="M3 8l9 5 9-5"></path><path d="M12 13v8"></path></svg>
+              </div>
+            </sc-if>
+            <sc-if value="{{ proj.isFilm }}" hint-placeholder-val="{{ false }}">
+              <div style="position: relative; z-index: 1; width: 170px; height: 170px; border-radius: 50%; background: var(--color-neutral-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: transform 0.35s ease;" style-hover="transform: scale(1.06);">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--color-neutral-800)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"></path><path d="m4 8 2-4h3l-2 4Z"></path><path d="m9 8 2-4h3l-2 4Z"></path><path d="m14 8 2-4h3l-2 4Z"></path></svg>
+              </div>
+            </sc-if>
+            <h5 style="margin-top: var(--space-4); font-size: 15px;">{{ proj.title }}</h5>
+            <p style="font-size: 12px; opacity: 0.75; margin-top: var(--space-1);">{{ proj.shortDescription }}</p>
+            <sc-if value="{{ proj.repoHref }}" hint-placeholder-val="{{ false }}">
+              <a class="btn btn-ghost" href="{{ proj.repoHref }}" target="_blank" rel="noopener" style="padding-inline: 0; font-size: 11px; margin-top: var(--space-1);">View repo</a>
+            </sc-if>
+          </div>
+          <sc-if value="{{ proj.showDivider }}" hint-placeholder-val="{{ true }}">
+            <div style="width: 1px; align-self: stretch; background: var(--color-divider); flex: 0 0 auto;"></div>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey" class="js-reveal" style="position: relative; max-width: 1240px; margin: 0 auto; padding: calc(var(--space-8) * 1.5) var(--space-8); overflow: hidden; opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;">
+    <div style="position: absolute; top: -10px; right: -6px; font-family: var(--font-heading); font-size: 160px; color: var(--color-accent-2-100); z-index: 0; line-height: 1; user-select: none;">JOURNEY</div>
+    <div style="position: relative; z-index: 1;">
+      <h6 style="color: var(--color-accent-700);">Journey</h6>
+      <h2 style="margin-bottom: var(--space-8);">Education &amp; Experience</h2>
+      <div style="position: relative; display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; padding-top: 8px;">
+        <div style="position: absolute; top: 40px; left: 0; right: 0; height: 2px; background: var(--color-divider); z-index: 0;"></div>
+        <sc-for list="{{ timeline }}" as="node" hint-placeholder-count="4">
+          <div style="position: relative; z-index: 1; flex: 1 1 180px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); max-width: 220px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-bg); border: 2px solid var(--color-accent-300); display: flex; align-items: center; justify-content: center;">
+              <sc-if value="{{ node.logo }}" hint-placeholder-val="{{ true }}">
+                <img src="assets/uottawa-logo.png" alt="" style="width: 34px; height: 34px; object-fit: contain;"/>
+              </sc-if>
+              <sc-if value="{{ node.noLogo }}" hint-placeholder-val="{{ false }}">
+                <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--color-accent-2-400);"></div>
+              </sc-if>
+            </div>
+            <span class="card-kicker">{{ node.dates }}</span>
+            <h5 style="margin: 0;">{{ node.role }}</h5>
+            <span class="text-muted" style="font-size: 12px;">{{ node.org }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="js-reveal" style="max-width: 1240px; margin: var(--space-8) auto; padding: calc(var(--space-8) * 1.2) var(--space-8); background: var(--color-surface); border-radius: var(--radius-lg); opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;">
+    <h6 style="color: var(--color-accent-700);">Core Stack</h6>
+    <h2 style="margin-bottom: var(--space-6);">Tools &amp; technologies</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+      <sc-for list="{{ skillGroups }}" as="grp" hint-placeholder-count="5">
+        <div class="card elev-sm" style="background: var(--color-bg);">
+          <span class="card-kicker">{{ grp.title }}</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: var(--space-1);">
+            <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="5">
+              <span class="tag {{ grp.tagClass }}">{{ it }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="contact" class="js-reveal" style="position: relative; overflow: hidden; max-width: 1240px; margin: var(--space-8) auto calc(var(--space-8) * 2); padding: calc(var(--space-8) * 1.4) var(--space-8); opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;">
+    <div style="position: absolute; bottom: -100px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: var(--color-accent-2-200); opacity: 0.5; z-index: 0;"></div>
+    <div style="position: relative; z-index: 1;">
+      <h6 style="color: var(--color-accent-700);">Contact</h6>
+      <h2 style="font-size: 52px; max-width: 640px;">Let's build something reliable together.</h2>
+      <p style="font-size: 16px; max-width: 520px; opacity: 0.8; margin-top: var(--space-3);">Open to backend, systems, and applied ML roles and collaborations. Reach out by email or connect on LinkedIn.</p>
+      <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6);">
+        <a class="btn btn-primary" href="mailto:{{ email }}" style="padding: var(--space-3) var(--space-4);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"></rect><path d="m22 7-10 6L2 7"></path></svg>
+          {{ email }}
+        </a>
+        <a class="btn btn-secondary" href="{{ linkedinHref }}" target="_blank" rel="noopener" style="padding: var(--space-3) var(--space-4);">LinkedIn</a>
+        <a class="btn btn-secondary" href="{{ githubHref }}" target="_blank" rel="noopener" style="padding: var(--space-3) var(--space-4);">GitHub</a>
+        <a class="btn btn-ghost" href="{{ resumeHref }}" download="" style="padding: var(--space-3) var(--space-4);">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width: 1240px; margin: 0 auto; padding: var(--space-4) var(--space-8); border-top: 1px solid var(--color-divider); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2); font-size: 12px; opacity: 0.6;">
+    <span>© 2026 Seifeddine Reguige</span>
+    <span>Ottawa, Ontario, Canada</span>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {},
+  &quot;extendedExperience&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.cursorRef = React.createRef();
+    this.ring1Ref = React.createRef();
+    this.ring2Ref = React.createRef();
+    this.photoImgRef = React.createRef();
+    this.x = -100; this.y = -100; this.scale = 1;
+    this.handleMove = this.handleMove.bind(this);
+    this.handleOver = this.handleOver.bind(this);
+    this.handleOut = this.handleOut.bind(this);
+    this.handleDown = this.handleDown.bind(this);
+    this.handleUp = this.handleUp.bind(this);
+    this.handlePhotoEnter = this.handlePhotoEnter.bind(this);
+    this.handlePhotoLeave = this.handlePhotoLeave.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousemove', this.handleMove);
+    document.addEventListener('mouseover', this.handleOver);
+    document.addEventListener('mouseout', this.handleOut);
+    document.addEventListener('mousedown', this.handleDown);
+    document.addEventListener('mouseup', this.handleUp);
+    const els = document.querySelectorAll('.js-reveal');
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          this.observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach((el) => this.observer.observe(el));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousemove', this.handleMove);
+    document.removeEventListener('mouseover', this.handleOver);
+    document.removeEventListener('mouseout', this.handleOut);
+    document.removeEventListener('mousedown', this.handleDown);
+    document.removeEventListener('mouseup', this.handleUp);
+    if (this.observer) this.observer.disconnect();
+  }
+
+  applyTransform() {
+    const el = this.cursorRef.current;
+    if (!el) return;
+    el.style.transform = `translate(${this.x}px, ${this.y}px) translate(-50%, -50%) scale(${this.scale})`;
+  }
+
+  handleMove(e) {
+    this.x = e.clientX; this.y = e.clientY;
+    this.applyTransform();
+  }
+
+  handleOver(e) {
+    const el = this.cursorRef.current;
+    if (!el || !e.target.closest) return;
+    if (e.target.closest('a, button, .btn, image-slot')) {
+      el.style.width = '46px'; el.style.height = '46px';
+      el.style.background = 'color-mix(in srgb, var(--color-accent) 18%, transparent)';
+    }
+  }
+
+  handleOut(e) {
+    const el = this.cursorRef.current;
+    if (!el || !e.target.closest) return;
+    if (e.target.closest('a, button, .btn, image-slot')) {
+      el.style.width = '20px'; el.style.height = '20px';
+      el.style.background = 'transparent';
+    }
+  }
+
+  handleDown() { this.scale = 0.8; this.applyTransform(); }
+  handleUp() { this.scale = 1; this.applyTransform(); }
+
+  handlePhotoEnter() {
+    if (this.photoImgRef.current) this.photoImgRef.current.style.transform = 'scale(1.06)';
+    if (this.ring1Ref.current) { this.ring1Ref.current.style.transform = 'scale(1.18)'; this.ring1Ref.current.style.opacity = '1'; }
+    if (this.ring2Ref.current) { this.ring2Ref.current.style.transform = 'scale(1.3)'; this.ring2Ref.current.style.opacity = '0.8'; }
+  }
+
+  handlePhotoLeave() {
+    if (this.photoImgRef.current) this.photoImgRef.current.style.transform = 'scale(1)';
+    if (this.ring1Ref.current) { this.ring1Ref.current.style.transform = 'scale(1)'; this.ring1Ref.current.style.opacity = '1'; }
+    if (this.ring2Ref.current) { this.ring2Ref.current.style.transform = 'scale(1)'; this.ring2Ref.current.style.opacity = '1'; }
+  }
+
+  renderVals() {
+    const extended = this.props.extendedExperience ?? false;
+
+    const education = { role: 'BSc Computer Science', org: 'University of Ottawa · CGPA 8.18/10', dates: 'Jan 2023 – Aug 2026', logo: true, noLogo: false };
+    const tutor = { role: 'Volunteer Math & CS Tutor', org: 'Independent', dates: 'Sept 2024 – Present', logo: false, noLogo: true };
+    const itSystems = { role: 'IT Systems Developer', org: 'Faculty of Health Sciences, uOttawa', dates: 'Oct 2024 – Apr 2025', logo: true, noLogo: false };
+    const itSupport = { role: 'IT Support', org: 'Adapted Exams Centre, uOttawa', dates: 'Sept 2025 – Mar 2026', logo: true, noLogo: false };
+    const examProctor = { role: 'Exam Proctor', org: 'Adapted Exams Centre, uOttawa', dates: 'Jan 2026 – Present', logo: true, noLogo: false };
+    const researchAssistant = { role: 'Research Assistant / Data Scientist', org: 'Faculty of Social Sciences, uOttawa', dates: 'Summer 2026 – Present', logo: true, noLogo: false };
+
+    const timeline = extended
+      ? [education, tutor, itSystems, itSupport, examProctor, researchAssistant]
+      : [education, itSystems, researchAssistant];
+
+    const projects = [
+      {
+        index: '01',
+        title: 'Optical Flow Reliability Predictor',
+        shortDescription: 'Predicts optical-flow reliability from scenario metadata before running expensive vision models.',
+        slotId: 'project-optical-flow',
+        isPhoto: true, isHouse: false, isBox: false, isFilm: false,
+        repoHref: 'https://github.com/idxwze/optical-flow-reliability-metadata.git'
+      },
+      {
+        index: '02',
+        title: 'PropertyOps',
+        shortDescription: 'Cross-platform rental management app with role-based access and live dashboards.',
+        slotId: 'project-property-ops',
+        isPhoto: false, isHouse: true, isBox: false, isFilm: false,
+        repoHref: 'https://github.com/idxwze/property-ops'
+      },
+      {
+        index: '03',
+        title: 'PCSurMesure',
+        shortDescription: 'Multi-role Android ordering app with Supabase-backed auth and order workflows.',
+        slotId: 'project-pcsurmesure',
+        isPhoto: false, isHouse: false, isBox: true, isFilm: false,
+        repoHref: 'https://github.com/idxwze/PCSurMesure'
+      },
+      {
+        index: '04',
+        title: 'Movie Recommender System',
+        shortDescription: 'Content-based, clustering, and collaborative filtering compared on The Movies Dataset.',
+        slotId: 'project-movie-recommender',
+        isPhoto: false, isHouse: false, isBox: false, isFilm: true,
+        repoHref: 'https://github.com/idxwze/Movie-Recommendation-Analysis-Using-The-Movies-Dataset.git'
+      }
+    ].map((p, i, arr) => ({ ...p, showDivider: i !== arr.length - 1 }));
+
+    return {
+      resumeHref: 'assets/Seifeddine-Reguige-Resume.pdf',
+      email: 'seifeddine.reguige@icloud.com',
+      linkedinHref: 'https://www.linkedin.com/in/seifeddine-reguige-4164bb251',
+      githubHref: 'https://github.com/',
+      stats: [
+        { value: '2026', label: 'Summer Grad' },
+        { value: '8.18', label: 'CGPA / 10' },
+        { value: '×3', label: "Dean's Honour List" },
+        { value: '4', label: 'Featured projects' }
+      ],
+      skillGroups: [
+        { title: 'Languages', tagClass: 'tag-accent', items: ['Python', 'Java', 'C', 'C++', 'JavaScript', 'TypeScript', 'SQL', 'PHP', 'GoLang', 'Prolog', 'Scheme', 'Bash'] },
+        { title: 'Frontend, Mobile & UI/UX', tagClass: 'tag-accent-2', items: ['React Native', 'Expo', 'Android Studio', 'Responsive & accessible UI', 'Wireframing & prototyping', 'Usability heuristics'] },
+        { title: 'Backend & Databases', tagClass: 'tag-neutral', items: ['REST APIs', 'Supabase (Postgres, RLS, Auth)', 'Firebase', 'SQLite', 'Relational data modeling', 'ETL pipelines'] },
+        { title: 'ML & Data Science', tagClass: 'tag-accent', items: ['Pandas', 'NumPy', 'scikit-learn', 'PyTorch', 'TensorFlow', 'OpenCV', 'XGBoost', 'Regression & clustering'] },
+        { title: 'Tools & Practices', tagClass: 'tag-accent-2', items: ['Git', 'GitHub Actions (CI/CD)', 'Docker', 'Kubernetes', 'Streamlit', 'Jupyter', 'Linux/Unix', 'Agile/Scrum'] }
+      ],
+      timeline,
+      projects,
+      cursorEl: this.cursorRef,
+      ring1Ref: this.ring1Ref,
+      ring2Ref: this.ring2Ref,
+      photoImgRef: this.photoImgRef,
+      handlePhotoEnter: this.handlePhotoEnter,
+      handlePhotoLeave: this.handlePhotoLeave
+    };
+  }
+}
+
+</script>
+</body>
+</html>

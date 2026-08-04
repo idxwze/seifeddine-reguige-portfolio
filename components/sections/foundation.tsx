@@ -22,8 +22,8 @@ export function FoundationSection() {
           <h2 className="section-title max-w-[10ch]">Education & Experience</h2>
         </div>
         <Card className="relative mt-8 overflow-hidden rounded-[2rem] border-border/70 bg-card/72">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(95,226,255,0.12),transparent_0_22%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]" />
-          <div className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-primary/5 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(224,122,95,0.1),transparent_0_22%),linear-gradient(180deg,rgba(255,255,255,0.4),rgba(255,255,255,0))]" />
+          <div className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-accent/10 blur-3xl" />
           <div className="absolute right-6 top-6 hidden h-24 w-24 overflow-hidden rounded-[1.4rem] border border-border/70 bg-background/45 p-4 backdrop-blur-md sm:block">
             <Image
               src="/images/uottawa-logo.png"

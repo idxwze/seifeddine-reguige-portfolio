@@ -10,7 +10,7 @@ Everything below is canonical. If the site disagrees with this file, the site is
 - **Name:** Seifeddine Reguige
 - **Location:** Ottawa, Ontario, Canada
 - **Email:** sregu043@uottawa.ca
-- **Phone:** +1 (438) 978-8480 — *see note at bottom before putting this on a public page*
+- **Phone:** [REDACTED — do not commit to public repo]
 - **LinkedIn:** https://www.linkedin.com/in/seifeddine-reguige-4164bb251
 - **GitHub:** _(fill in)_
 - **Portfolio:** _(this site)_

@@ -1,139 +1,117 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { navigationItems } from "@/data/site";
+import { siteConfig, navigationItems } from "@/data/site";
+
+const DownloadIcon = () => (
+  <svg
+    width={14}
+    height={14}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.75}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 3v12" />
+    <path d="m7 10 5 5 5-5" />
+    <path d="M5 21h14" />
+  </svg>
+);
 
 export function Navbar() {
-  const [activeSection, setActiveSection] = React.useState("hero");
-  const [open, setOpen] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  React.useEffect(() => {
-    const sections = navigationItems
-      .map((item) => document.querySelector(item.href))
-      .filter((section): section is HTMLElement => Boolean(section));
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const active = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (active?.target.id) {
-          setActiveSection(active.target.id);
-        }
-      },
-      {
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: [0.2, 0.45, 0.7]
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  React.useEffect(() => {
-    function closeMenu() {
-      setOpen(false);
-    }
-
-    function handleResize() {
-      if (window.innerWidth >= 768) {
-        setOpen(false);
-      }
-    }
-
-    window.addEventListener("hashchange", closeMenu);
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("hashchange", closeMenu);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
-    <header className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex justify-center px-4 py-6 md:px-6 md:py-8">
-      <div className="pointer-events-auto w-full max-w-fit rounded-full border border-border/70 bg-card/75 shadow-[0_22px_80px_-44px_rgba(0,0,0,0.42)] backdrop-blur-2xl">
-        <div className="flex h-12 items-center gap-3 px-4 md:px-6">
-          <Link href="#hero" className="shrink-0 text-lg font-black tracking-[-0.08em] text-foreground">
-            SR<span className="text-primary">.</span>
-          </Link>
+    <nav
+      aria-label="Primary navigation"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "color-mix(in srgb, var(--color-bg) 88%, transparent)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        borderBottom: "1px solid var(--color-divider)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1240,
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          gap: "var(--space-4)",
+          padding: "var(--space-3) var(--space-8)",
+        }}
+      >
+        {/* Brand */}
+        <Link
+          href="#hero"
+          style={{
+            fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+            fontSize: 18,
+            color: "var(--color-text)",
+            textDecoration: "none",
+            marginRight: "auto",
+            flexShrink: 0,
+          }}
+        >
+          Seifeddine Reguige
+        </Link>
 
-          <button
-            type="button"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border/70 text-foreground transition hover:border-primary/30 hover:text-primary md:hidden"
-            aria-expanded={open}
-            aria-label="Toggle navigation"
-            onClick={() => setOpen((value) => !value)}
+        {/* Nav links */}
+        {navigationItems.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            style={{
+              color: "var(--color-text)",
+              fontSize: 14,
+              textDecoration: "none",
+              transition: "color 0.15s ease",
+            }}
+            onMouseEnter={(e) =>
+              ((e.target as HTMLAnchorElement).style.color = "var(--color-accent)")
+            }
+            onMouseLeave={(e) =>
+              ((e.target as HTMLAnchorElement).style.color = "var(--color-text)")
+            }
           >
-            <span className="sr-only">Toggle navigation</span>
-            <motion.div animate={open ? "open" : "closed"} className="flex flex-col gap-1">
-              <motion.span variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 3 } }} className="h-px w-4 bg-current" />
-              <motion.span variants={{ closed: { rotate: 0, y: 0, opacity: 1 }, open: { rotate: -45, y: -3, opacity: 1 } }} className="h-px w-4 bg-current" />
-            </motion.div>
-          </button>
+            {item.label}
+          </a>
+        ))}
 
-          <nav
-            aria-label="Primary navigation"
-            className={`${open ? "flex" : "hidden"} absolute left-4 right-4 top-[calc(100%+0.75rem)] flex-col gap-2 rounded-[1.25rem] border border-border/70 bg-background/95 p-3 shadow-[0_30px_70px_-40px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:static md:flex md:flex-row md:items-center md:gap-8 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
-          >
-            {navigationItems.map((item) => {
-              const isActive = activeSection === item.href.slice(1);
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  aria-current={isActive ? "page" : undefined}
-                  className="relative rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.28em] text-muted-foreground transition hover:text-foreground"
-                >
-                  {isActive ? (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-primary/10"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    />
-                  ) : null}
-                  <span className={isActive ? "text-primary" : undefined}>{item.label}</span>
-                </a>
-              );
-            })}
-          </nav>
-
-          <button
-            type="button"
-            aria-label={`Switch to ${mounted && resolvedTheme === "dark" ? "light" : "dark"} mode`}
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="relative inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background/60 text-foreground transition hover:border-primary/30 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <motion.span
-              key={mounted ? resolvedTheme : "light"}
-              initial={{ y: 10, opacity: 0, rotate: -18 }}
-              animate={{ y: 0, opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {mounted && resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
-            </motion.span>
-          </button>
-        </div>
+        {/* Resume button */}
+        <a
+          href={siteConfig.resumeHref}
+          download
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontFamily: "var(--font-caprasimo), system-ui, sans-serif",
+            fontSize: 13,
+            color: "var(--color-bg)",
+            background: "var(--color-accent)",
+            border: "1px solid transparent",
+            borderRadius: 999,
+            padding: "var(--space-2) var(--space-4)",
+            textDecoration: "none",
+            transition: "background 0.15s ease",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent-600)")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.background = "var(--color-accent)")
+          }
+        >
+          <DownloadIcon />
+          Resume
+        </a>
       </div>
-    </header>
+    </nav>
   );
 }
