@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <!-- Deep forest green rounded square background -->
-  <rect width="128" height="128" rx="28" fill="#2e4a35"/>
-  <!-- Terracotta S — single bold cubic-bezier stroke, round caps -->
+  <!-- Cream rounded square background -->
+  <rect width="128" height="128" rx="28" fill="#f5ead8"/>
+  <!-- Forest green S — single bold cubic-bezier stroke, round caps -->
   <path
     d="M 85 32
        C 85 17, 39 17, 39 45
        C 39 64, 89 64, 89 83
        C 89 111, 43 111, 43 96"
     fill="none"
-    stroke="#c67139"
+    stroke="#2e4a35"
     stroke-width="17"
     stroke-linecap="round"
   />

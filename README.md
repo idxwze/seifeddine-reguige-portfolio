@@ -1,53 +1,49 @@
 # Seifeddine Reguige Portfolio
 
-Personal portfolio site — a single scrolling page in the Organic design language (warm cream/terracotta/sage palette, Caprasimo display type, rounded organic shapes).
+Personal portfolio site. Single scrolling page, deployed at [seifeddine-reguige.vercel.app](https://seifeddine-reguige.vercel.app).
 
-Sections: Hero → About → Selected Work → Journey → Core Stack → Contact
-
-Deployed at [seifeddine-reguige.vercel.app](https://seifeddine-reguige.vercel.app)
+Sections: Hero → About → Work → Journey → Stack → Contact
 
 ## Stack
 
 - Next.js 14 App Router
 - React 18 + TypeScript
-- Tailwind CSS (Organic design-system tokens)
-- Framer Motion (scroll reveal, intro animation, hover states)
+- Tailwind CSS
+- Framer Motion
 - Vercel Analytics
 
 ## Project Structure
 
-```text
-app/                 routes, layout, metadata, global styles
+```
+app/                routes, layout, metadata, global styles
 components/
-  layout/            Navbar, Footer
-  sections/          Hero, About, Work, Journey, Stack, Contact
-  custom-cursor.tsx  pointer-ring cursor (degrades on touch)
-  intro-overlay.tsx  opening animation overlay
-data/                all editable content as TypeScript files
-lib/                 metadata helpers
+  layout/           Navbar, Footer
+  sections/         Hero, About, Work, Journey, Stack, Contact
+  custom-cursor.tsx pointer-ring cursor (degrades on touch)
+  intro-overlay.tsx opening animation overlay
+data/               all editable content as TypeScript files
+lib/                metadata helpers
 public/
-  files/             resume PDF
-  images/            photos, logos, project covers
-docs/
-  design_handoff/    Organic design reference (not shipped to production)
+  files/            resume PDF
+  images/           photos, logos, project covers
 ```
 
-## Where to Update Content
+## Content updates 
 
 All copy and links live in `data/`:
 
 | File | Controls |
 |------|----------|
-| `data/site.ts` | Name, email, GitHub/LinkedIn, hero tag, bio paragraphs, nav items, stats |
-| `data/projects.ts` | `featuredProjects` array (4 Work section items) |
-| `data/experience.ts` | `timelineNodes` (Journey section) |
-| `data/skills.ts` | `organicSkillGroups` (Stack section) |
+| `data/site.ts` | Name, email, GitHub/LinkedIn, bio, nav items, hero stats |
+| `data/projects.ts` | Work section items (`featuredProjects` array) |
+| `data/experience.ts` | Journey section timeline nodes |
+| `data/skills.ts` | Stack section skill groups |
 
 To swap assets:
 
 - Portrait: replace `public/images/me.jpg`
 - Resume: replace `public/files/Seifeddine-Reguige-Resume.pdf`
-- Project covers: replace `public/images/optical-flow-reliability-cover.png` (others use icon placeholders until real screenshots are ready)
+- Project covers: replace files under `public/images/`
 
 ## Development
 
